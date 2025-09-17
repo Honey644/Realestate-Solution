@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scheme Apply • SV Realty Solutions</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f9f9f9; padding:2rem; }
+    form { background:#fff; padding:2rem; border-radius:10px; max-width:900px; margin:auto; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    h1 { text-align:center; margin-bottom:2rem; color:#1a1a2e; }
+    label { font-weight:bold; display:block; margin-top:1rem; color:#1a1a2e; }
+    input, select, textarea { width:100%; padding:0.8rem; margin-top:0.5rem; border:1px solid #ccc; border-radius:6px; font-size:1rem; }
+    .row { display:flex; gap:1rem; }
+    .row > div { flex:1; }
+    button { background:#ffcc00; border:none; padding:1rem 2rem; margin-top:2rem; border-radius:6px; cursor:pointer; font-weight:bold; }
+    button:hover { background:#e6b800; }
+    fieldset { border:1px solid #ddd; border-radius:8px; padding:1.5rem; margin-top:2rem; }
+    legend { font-weight:bold; padding:0 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Scheme Application Form</h1>
+  <form id="schemeApplyForm">
+    
+    <!-- Scheme Selection -->
+    <fieldset>
+      <legend>Scheme Details</legend>
+      <div class="row">
+        <div>
+          <label for="scheme">Scheme</label>
+          <select id="scheme" name="scheme" required>
+            <option value="">Select</option>
+            <option>Lucky Draw</option>
+            <option>Direct Sale</option>
+          </select>
+        </div>
+        <div>
+          <label for="project">Project</label>
+          <select id="project" name="project" required>
+            <option value="">Select</option>
+            <option>Project A</option>
+            <option>Project B</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="unitType">Unit Type</label>
+          <select id="unitType" name="unitType" required>
+            <option value="">Select</option>
+            <option>Plot</option>
+            <option>Flat</option>
+            <option>Commercial</option>
+          </select>
+        </div>
+        <div>
+          <label for="plan">Plan</label>
+          <select id="plan" name="plan" required>
+            <option value="">Select</option>
+            <option>Plan A</option>
+            <option>Plan B</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="paymentPlan">Payment Plan</label>
+      <select id="paymentPlan" name="paymentPlan" required>
+        <option value="">Select</option>
+        <option>Full Payment</option>
+        <option>Installments</option>
+      </select>
+    </fieldset>
+
+    <!-- Applicant Details -->
+    <fieldset>
+      <legend>Applicant Details</legend>
+      <label for="fullName">Full Name *</label>
+      <input type="text" id="fullName" name="fullName" required>
+
+      <label for="fatherName">Father's Name *</label>
+      <input type="text" id="fatherName" name="fatherName" required>
+
+      <div class="row">
+        <div>
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="mobile">Mobile No *</label>
+          <input type="tel" id="mobile" name="mobile" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="pan">PAN Number</label>
+          <input type="text" id="pan" name="pan">
+        </div>
+        <div>
+          <label for="aadhaar">Aadhaar Number</label>
+          <input type="text" id="aadhaar" name="aadhaar">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob">
+        </div>
+        <div>
+          <label for="anniversary">Date of Anniversary</label>
+          <input type="date" id="anniversary" name="anniversary">
+        </div>
+      </div>
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3"></textarea>
+    </fieldset>
+
+    <!-- Preferences -->
+    <fieldset>
+      <legend>Preferences</legend>
+      <label for="luckyDraw">Lucky Draw Date</label>
+      <input type="date" id="luckyDraw" name="luckyDraw">
+
+      <div class="row">
+        <div>
+          <label for="size">Size Type</label>
+          <select id="size" name="size">
+            <option value="">Select</option>
+            <option>100 Sq Yd</option>
+            <option>200 Sq Yd</option>
+          </select>
+        </div>
+        <div>
+          <label for="facing">Facing</label>
+          <select id="facing" name="facing">
+            <option value="">Select</option>
+            <option>Corner</option>
+            <option>Park Facing</option>
+            <option>Main Road</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod">
+            <option value="">Select</option>
+            <option>Cash</option>
+            <option>Bank Transfer</option>
+            <option>Cheque</option>
+          </select>
+        </div>
+        <div>
+          <label for="amount">Amount Received</label>
+          <input type="number" id="amount" name="amount">
+        </div>
+      </div>
+
+      <label for="remark">Remark</label>
+      <textarea id="remark" name="remark" rows="2"></textarea>
+
+      <label for="receipt">Payment Receipt</label>
+      <input type="file" id="receipt" name="receipt">
+    </fieldset>
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <script>
+    document.getElementById("schemeApplyForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch("/.netlify/functions/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        alert(data.msg || "Form submitted!");
+      } catch (err) {
+        alert("Error submitting form.");
+      }
+    });
+  </script>
+</body>
+</html>
