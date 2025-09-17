@@ -5,148 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SV Realty Solutions Pvt. Ltd.</title>
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="assets/script.js"></script>
   <style>
-    /* Basic Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Reset and Base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
 
-    body { 
-      font-family: Arial, sans-serif; 
-      line-height: 1.6; 
-      color: #333; 
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     /* Navbar */
     .navbar {
-      background: #0d1b2a;
+      background: #1a1a1a;
       color: #fff;
       padding: 0.8rem 1rem;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
+
     .navbar .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: auto;
+      flex-wrap: wrap;
     }
-    .logo {
+
+    .navbar .logo {
       font-size: 1.4rem;
-      font-weight: bold;
+      font-weight: 600;
     }
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
-    nav a {
+
+    .navbar nav a {
+      margin: 0 0.6rem;
       color: #fff;
-      text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.3s;
     }
-    nav a:hover { color: #f4a261; }
 
-    /* Mobile Nav */
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-    }
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        background: #0d1b2a;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 1rem;
-      }
-      nav.active { display: flex; }
-      .menu-toggle { display: block; }
+    .navbar nav a:hover {
+      color: #f8c12d;
     }
 
-    /* Hero Section with Banner */
+    /* Hero Banner */
     .hero {
       position: relative;
-      background: url('assets/banner.jpg') center/cover no-repeat;
+      background: url("assets/banner.jpg") no-repeat center center/cover;
       height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       color: #fff;
+      text-align: center;
     }
-    .hero::after {
+
+    .hero::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      inset: 0;
+      background: rgba(0,0,0,0.55);
     }
+
     .hero .content {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       max-width: 800px;
+      padding: 0 1rem;
     }
+
     .hero h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
-    .hero p {
+
+    .hero p.small {
       font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
+
     .cta {
       display: inline-block;
-      background: #f4a261;
-      color: #fff;
-      padding: 0.7rem 1.4rem;
-      border-radius: 5px;
-      text-decoration: none;
+      background: #f8c12d;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #000;
       transition: background 0.3s;
     }
-    .cta:hover { background: #e76f51; }
 
-    /* Sections */
+    .cta:hover {
+      background: #e5aa15;
+    }
+
+    /* Cards Section */
     .container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
       padding: 2rem 1rem;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
+
     .card {
       background: #fff;
+      border-radius: 8px;
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
     }
-    .card h2 { margin-bottom: 0.8rem; }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
 
     /* Footer */
     footer {
       text-align: center;
-      background: #0d1b2a;
+      padding: 1.2rem;
+      background: #1a1a1a;
       color: #fff;
-      padding: 1rem;
       margin-top: 2rem;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .navbar nav {
+        margin-top: 0.8rem;
+      }
+      .navbar nav a {
+        display: inline-block;
+        margin: 0.4rem 0.6rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
   <div class="navbar">
     <div class="container">
       <div class="logo">SV Realty Solutions</div>
-      <div class="menu-toggle">&#9776;</div>
       <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -160,21 +174,19 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="content">
       <h1>Shri Ji Van – Premium Plots near Khatu Shyam Ji</h1>
-      <p>Trusted real estate guidance for families & investors. Book a visit today.</p>
+      <p class="small">Trusted real estate guidance for families & investors. Book a visit today.</p>
       <a class="cta" href="properties.html">Explore Project</a>
     </div>
   </section>
 
-  <!-- Info Cards -->
   <section class="container">
     <div class="grid">
       <div class="card">
         <h2>About Us</h2>
-        <p>SV REALTY SOLUTIONS PVT. LTD. was established in 2025. We deal in all types of real estate properties with trusted expertise.</p>
+        <p>SV REALTY SOLUTIONS PVT. LTD. was established in 2025 and deals in all types of real estate projects with a customer-centric approach.</p>
         <a class="cta" href="about.html">Read More</a>
       </div>
       <div class="card">
@@ -194,18 +206,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     © 2025 SV Realty Solutions Pvt. Ltd.
   </footer>
-
-  <script>
-    // Mobile menu toggle
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
 </body>
 </html>
