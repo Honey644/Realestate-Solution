@@ -4,14 +4,216 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SV Realty Solutions Pvt. Ltd.</title>
-  <!-- External CSS -->
-  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* Reset and Base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f8c12d;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Side Drawer */
+    #nav-menu {
+      display: flex;
+    }
+
+    /* Overlay (hidden by default) */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      z-index: 1500;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      #nav-menu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        height: 100%;
+        width: 250px;
+        background: #1a1a1a;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+        z-index: 2000;
+      }
+
+      #nav-menu a {
+        color: #fff;
+        padding: 1rem 0;
+        border-bottom: 1px solid #333;
+      }
+
+      #nav-menu.active {
+        right: 0;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+    }
+
+    /* Hero Banner */
+    .hero {
+      position: relative;
+      background: url("assets/realestate-banner.jpg") no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hero .content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p.small {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta {
+      display: inline-block;
+      background: #f8c12d;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #000;
+      transition: background 0.3s;
+    }
+
+    .cta:hover {
+      background: #e5aa15;
+    }
+
+    /* Cards Section */
+    .container-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      background: #1a1a1a;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navbar -->
   <div class="navbar">
     <div class="container">
       <div class="logo">SV Realty Solutions</div>
-      <nav>
+      <button class="hamburger" id="hamburger">☰</button>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="properties.html">Properties</a>
@@ -24,6 +226,9 @@
     </div>
   </div>
 
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="content">
@@ -34,7 +239,7 @@
   </section>
 
   <!-- Cards Section -->
-  <section class="container">
+  <section class="container-section">
     <div class="grid">
       <div class="card">
         <h2>About Us</h2>
@@ -58,8 +263,37 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     © 2025 SV Realty Solutions Pvt. Ltd.
   </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    const overlay = document.getElementById("overlay");
+    const navLinks = navMenu.querySelectorAll("a");
+
+    // Toggle menu
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    // Close on overlay click
+    overlay.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    // Close when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    });
+  </script>
 </body>
 </html>
