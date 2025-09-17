@@ -1,9 +1,200 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Services • SV Realty Solutions</title><link rel='stylesheet' href='assets/styles.css'></head>
-<body><div class='navbar'><div class='row container'><div class='logo'>SV Realty Solutions</div><nav>
-<a href='index.html'>Home</a><a href='about.html'>About</a><a href='properties.html'>Properties</a><a href='services.html'>Services</a><a href='gallery.html'>Gallery</a><a href='contact.html'>Contact</a></nav></div></div>
-<main class='container'><h1>Our Services</h1><div class='grid'>
-<div class='card'><h3>Land Deals</h3><p>Agriculture, residential & commercial land.</p></div>
-<div class='card'><h3>Documentation</h3><p>Transparent, guided paperwork & legal checks.</p></div>
-<div class='card'><h3>Investment Advisory</h3><p>Help you choose the right plot for your needs.</p></div>
-</div></main><footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Services • SV Realty Solutions</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .navbar {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 1rem 0;
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      margin: auto;
+    }
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+    .navbar nav a {
+      color: #fff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .navbar nav a:hover {
+      color: #ffcc00;
+    }
+
+    main {
+      width: 90%;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    main h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a2e;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .card h3 {
+      color: #1a1a2e;
+      margin-bottom: 0.8rem;
+    }
+    .card p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      color: #ffcc00;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .cta {
+      margin-top: 2rem;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      background: #ffcc00;
+      color: #1a1a2e;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .cta a:hover {
+      background: #e6b800;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #1a1a2e;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container">
+      <div class="logo">SV Realty Solutions</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="properties.html">Properties</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <h1>Our Services</h1>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-map-marked-alt icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Land Deals">
+        <h3>Land Deals</h3>
+        <p>We specialize in sourcing agricultural, residential, and commercial land at competitive prices. 
+        Our team ensures transparent transactions so you can invest with confidence.</p>
+        <p>With our extensive network, you get access to premium locations that offer both lifestyle benefits and long-term returns.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-file-contract icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Documentation">
+        <h3>Documentation</h3>
+        <p>We handle sale deeds, registration, tax filings, and legal checks with clarity and precision. 
+        Our experts ensure compliance with all regulations so you can finalize deals stress-free.</p>
+        <p>With us by your side, your paperwork becomes simple and efficient.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-line icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Investment Advisory">
+        <h3>Investment Advisory</h3>
+        <p>Whether you’re a first-time buyer or a seasoned investor, we help you make smart property choices. 
+        Our experts study market trends and ROI potential to guide your decisions.</p>
+        <p>With our advice, you secure investments that maximize long-term wealth.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-building icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Property Management">
+        <h3>Property Management</h3>
+        <p>We manage your property like it’s our own – from tenant support and rent collection to upkeep. 
+        This ensures hassle-free ownership while maximizing rental income.</p>
+        <p>Our team keeps your real estate profitable and stress-free.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-search-location icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Market Research">
+        <h3>Market Research</h3>
+        <p>We provide detailed property insights, highlighting upcoming locations, growth trends, and pricing patterns. 
+        This allows you to invest with data-driven clarity and foresight.</p>
+        <p>Stay ahead of the curve with our expert research.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-user-tie icon"></i>
+        <img src="https://via.placeholder.com/400x250" alt="Consultancy">
+        <h3>Consultancy</h3>
+        <p>Every investor is unique, so we tailor solutions to your vision. From acquisition to financing, 
+        we guide you at every step with personalized consultation.</p>
+        <p>Your real estate journey becomes smooth and rewarding with us.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="contact.html">Get in Touch</a>
+    </div>
+  </main>
+
+  <footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
+</body>
+</html>
