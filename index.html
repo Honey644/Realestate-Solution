@@ -4,164 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SV Realty Solutions Pvt. Ltd.</title>
+  <!-- External CSS -->
   <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    /* Reset and Base */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Navbar */
-    .navbar {
-      background: #1a1a1a;
-      color: #fff;
-      padding: 0.8rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .navbar .logo {
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-
-    .navbar nav a {
-      margin: 0 0.6rem;
-      color: #fff;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-
-    .navbar nav a:hover {
-      color: #f8c12d;
-    }
-
-    /* Hero Banner */
-    .hero {
-      position: relative;
-      background: url("assets/realestate-banner.jpg") no-repeat center center/cover;
-      height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55); /* overlay */
-    }
-
-    .hero .content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 0 1rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .hero p.small {
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .cta {
-      display: inline-block;
-      background: #f8c12d;
-      padding: 0.7rem 1.5rem;
-      border-radius: 4px;
-      font-weight: 600;
-      color: #000;
-      transition: background 0.3s;
-    }
-
-    .cta:hover {
-      background: #e5aa15;
-    }
-
-    /* Cards Section */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h2 {
-      margin-bottom: 1rem;
-      color: #1a1a1a;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1.2rem;
-      background: #1a1a1a;
-      color: #fff;
-      margin-top: 2rem;
-    }
-
-    /* Mobile Adjustments */
-    @media (max-width: 768px) {
-      .hero {
-        height: 60vh;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .hero p.small {
-        font-size: 1rem;
-      }
-      .navbar nav {
-        margin-top: 0.8rem;
-      }
-      .navbar nav a {
-        display: inline-block;
-        margin: 0.4rem 0.6rem;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="navbar">
@@ -180,6 +24,7 @@
     </div>
   </div>
 
+  <!-- Hero Section -->
   <section class="hero">
     <div class="content">
       <h1>Shri Ji Van – Premium Plots near Khatu Shyam Ji</h1>
@@ -188,6 +33,7 @@
     </div>
   </section>
 
+  <!-- Cards Section -->
   <section class="container">
     <div class="grid">
       <div class="card">
