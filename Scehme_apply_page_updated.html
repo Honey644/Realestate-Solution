@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheme Apply | SV Realty Solution</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background-color: #065c4c;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #065c4c;
+    }
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .row > div {
+      flex: 1;
+      min-width: 250px;
+    }
+    button {
+      background-color: #ffb400;
+      border: none;
+      padding: 12px 25px;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #e09e00;
+    }
+    fieldset {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+    legend {
+      font-weight: bold;
+      color: #065c4c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>SV Realty Solution - Scheme Apply</h2>
+  </header>
+
+  <div class="container">
+    <h1>Welcome to the Scheme Apply Form</h1>
+    <p>Start your subsidized scheme application process here.</p>
+
+    <form name="scheme-apply" method="POST" data-netlify="true">
+      <!-- Scheme Details -->
+      <fieldset>
+        <legend>Scheme Details</legend>
+        <div class="row">
+          <div>
+            <label for="luckyDraw">Lucky Draw</label>
+            <select id="luckyDraw">
+              <option>Select</option>
+              <option>Tourism Development Plan</option>
+            </select>
+          </div>
+          <div>
+            <label for="scheme">Scheme</label>
+            <select id="scheme">
+              <option>Select</option>
+              <option>Tourism development Plan Khatu(Sikar, RJ) and LansDown(Uttrakhand)</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="project">Project</label>
+            <select id="project">
+              <option>Select</option>
+              <option>Tourism development Plan Khatu(Sikar, RJ)</option>
+            </select>
+          </div>
+          <div>
+            <label for="unitType">Unit Type</label>
+            <select id="unitType">
+              <option>Select</option>
+              <option>Plot</option>
+              <option>Shop</option>
+              <option>Farmhouse</option>
+              <option>Villa</option>
+            </select>
+          </div>
+          <div>
+            <label for="plan">Plan</label>
+            <select id="plan">
+              <option>Select</option>
+              <option>Subsidized plan</option>
+            </select>
+          </div>
+          <div>
+            <label for="paymentPlan">Payment Plan</label>
+            <select id="paymentPlan">
+              <option>Select</option>
+              <option>PLP</option>
+              <option>DP</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Applicant Details -->
+      <fieldset>
+        <legend>Applicant Details</legend>
+        <div class="row">
+          <div>
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div>
+            <label for="fatherName">S/o, D/o, W/o</label>
+            <input type="text" id="fullName" required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="email">Email *</label>
+            <input type="email" id="email" required>
+          </div>
+          <div>
+            <label for="mobile">Mobile No *</label>
+            <input type="tel" id="mobile" required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="aadhaar">AADHAAR Number</label>
+            <input type="text" id="aadhaar">
+          </div>
+          <div>
+            <label for="pan">PAN Number</label>
+            <input type="text" id="pan">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="dob">Date of Birth *</label>
+            <input type="date" id="dob" required>
+          </div>
+          <div>
+            <label for="doa">Date of Anniversary</label>
+            <input type="date" id="doa">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="altMobile">Alternate Mobile No</label>
+            <input type="tel" id="altMobile">
+          </div>
+        </div>
+        <label for="address">Address *</label>
+        <textarea id="address" rows="3" required></textarea>
+
+        <div class="row">
+          <div>
+            <label for="country">Country</label>
+            <select id="country">
+              <option>India</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input type="text" id="state">
+          </div>
+          <div>
+            <label for="city">City</label>
+            <input type="text" id="city">
+          </div>
+          <div>
+            <label for="pin">Pin Code</label>
+            <input type="text" id="pin">
+          </div>
+          <div>
+            <label for="landmark">Landmark</label>
+            <input type="text" id="landmark">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="rm">Relationship Manager *</label>
+            <select id="rm">
+              <option>Select</option>
+              <option>Satyam</option>
+              <option>Uttkarsh</option>
+            </select>
+          </div>
+          <div>
+            <label for="sm">Supporting Manager</label>
+            <select id="sm">
+              <option>Select</option>
+              <option>Satyam</option>
+              <option>Uttkarsh</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Co-Applicant Details -->
+      <fieldset>
+        <legend>Co-Applicant Details</legend>
+        <div class="row">
+          <div>
+            <label for="coName">Full Name</label>
+            <input type="text" id="coName">
+          </div>
+          <div>
+            <label for="coEmail">Email</label>
+            <input type="email" id="coEmail">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coPan">PAN Number</label>
+            <input type="text" id="coPan">
+          </div>
+          <div>
+            <label for="coAadhaar">AADHAAR Number</label>
+            <input type="text" id="coAadhaar">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coDob">Date of Birth</label>
+            <input type="date" id="coDob">
+          </div>
+          <div>
+            <label for="coDoa">Date of Anniversary</label>
+            <input type="date" id="coDoa">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coMobile">Mobile No</label>
+            <input type="tel" id="coMobile">
+          </div>
+          <div>
+            <label for="coAltMobile">Alternate Mobile No</label>
+            <input type="tel" id="coAltMobile">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coCountry">Country</label>
+            <select id="coCountry">
+              <option>India</option>
+              <option>Other</option>
+            </select>
+          </div>
+			<div>
+			  <label for="coState">State</label>
+			  <select id="coState" name="coState">
+				<option value="">--Select State--</option>
+				<option value="andhra_pradesh">Andhra Pradesh</option>
+				<option value="arunachal_pradesh">Arunachal Pradesh</option>
+				<option value="assam">Assam</option>
+				<option value="bihar">Bihar</option>
+				<option value="chhattisgarh">Chhattisgarh</option>
+				<option value="goa">Goa</option>
+				<option value="gujarat">Gujarat</option>
+				<option value="haryana">Haryana</option>
+				<option value="himachal_pradesh">Himachal Pradesh</option>
+				<option value="jharkhand">Jharkhand</option>
+				<option value="karnataka">Karnataka</option>
+				<option value="kerala">Kerala</option>
+				<option value="madhya_pradesh">Madhya Pradesh</option>
+				<option value="maharashtra">Maharashtra</option>
+				<option value="manipur">Manipur</option>
+				<option value="meghalaya">Meghalaya</option>
+				<option value="mizoram">Mizoram</option>
+				<option value="nagaland">Nagaland</option>
+				<option value="odisha">Odisha</option>
+				<option value="punjab">Punjab</option>
+				<option value="rajasthan">Rajasthan</option>
+				<option value="sikkim">Sikkim</option>
+				<option value="tamil_nadu">Tamil Nadu</option>
+				<option value="telangana">Telangana</option>
+				<option value="tripura">Tripura</option>
+				<option value="uttar_pradesh">Uttar Pradesh</option>
+				<option value="uttarakhand">Uttarakhand</option>
+				<option value="west_bengal">West Bengal</option>
+				<option value="andaman_nicobar">Andaman and Nicobar Islands</option>
+				<option value="chandigarh">Chandigarh</option>
+				<option value="dadra_nagar_haveli_daman_diu">Dadra and Nagar Haveli and Daman and Diu</option>
+				<option value="delhi">Delhi</option>
+				<option value="jammu_kashmir">Jammu and Kashmir</option>
+				<option value="ladakh">Ladakh</option>
+				<option value="lakshadweep">Lakshadweep</option>
+				<option value="puducherry">Puducherry</option>
+			  </select>
+			</div>
+
+          <div>
+            <label for="coCity">City</label>
+            <input type="text" id="coCity">
+          </div>
+          <div>
+            <label for="coPin">Pin Code</label>
+            <input type="text" id="coPin">
+          </div>
+        </div>
+        <label for="coAddress">Address</label>
+        <textarea id="coAddress" rows="3"></textarea>
+      </fieldset>
+
+      <!-- Preferences -->
+      <fieldset>
+        <legend>Preferences</legend>
+        <div class="row">
+          <div>
+            <label for="schemeName">Scheme Name:</label>
+            <input type="text" id="schemeName">
+          </div>
+          <div>
+            <label for="luckyDrawDate">Lucky Draw Date:</label>
+            <input type="date" id="luckyDrawDate">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="size">Size Type</label>
+            <select id="size">
+              <option>Select Size</option>
+            </select>
+          </div>
+          <div>
+            <label for="facing">Facing</label>
+            <select id="facing">
+              <option>Corner Facing</option>
+              <option>Park Facing</option>
+              <option>Main Road Facing</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod">
+              <option>Select Payment Method</option>
+            </select>
+          </div>
+          <div>
+            <label for="amount">Amount Received</label>
+            <input type="number" id="amount">
+          </div>
+        </div>
+        <label for="remarks">Remarks</label>
+        <textarea id="remarks" rows="3"></textarea>
+
+        <label for="receipt">Payment Receipt</label>
+        <input type="file" id="receipt">
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment QR</legend>
+        <p>Scan this QR code to make your payment:</p>
+        <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
+      </fieldset>
+
+      <button type="submit">Submit Scheme Application</button>
+    </form>
+  </div>
+</body>
+</html>

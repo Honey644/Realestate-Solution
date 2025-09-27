@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direct Apply | SV Realty Solution</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background-color: #065c4c;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #065c4c;
+    }
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .row > div {
+      flex: 1;
+      min-width: 250px;
+    }
+    button {
+      background-color: #ffb400;
+      border: none;
+      padding: 12px 25px;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #e09e00;
+    }
+    fieldset {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+    legend {
+      font-weight: bold;
+      color: #065c4c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>SV Realty Solution - Direct Apply</h2>
+  </header>
+
+  <div class="container">
+    <h1>Welcome to the Direct Apply Form</h1>
+    <p>Start your instant booking application process here.</p>
+
+    <form name="direct-apply" method="POST" data-netlify="true">
+      <!-- Project Details -->
+      <fieldset>
+        <legend>Project Details</legend>
+        <div class="row">
+          <div>
+            <label for="project">Project</label>
+            <select id="project">
+              <option>Select</option>
+              <option>Residential Plot</option>
+              <option>Commercial Plot</option>
+              <option>Farmhouse</option>
+              <option>Villa</option>
+            </select>
+          </div>
+          <div>
+            <label for="unitType">Unit Type</label>
+            <select id="unitType">
+              <option>Select</option>
+              <option>Plot</option>
+              <option>Shop</option>
+              <option>Farmhouse</option>
+              <option>Villa</option>
+            </select>
+          </div>
+          <div>
+            <label for="paymentPlan">Payment Plan</label>
+            <select id="paymentPlan">
+              <option>Select</option>
+              <option>Full Payment</option>
+              <option>Installments</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Applicant Details -->
+      <fieldset>
+        <legend>Applicant Details</legend>
+        <div class="row">
+          <div>
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div>
+             <label for="fatherName">S/o, D/o, W/o</label>
+            <input type="text" id="fatherName" required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="email">Email *</label>
+            <input type="email" id="email" required>
+          </div>
+          <div>
+            <label for="mobile">Mobile No *</label>
+            <input type="tel" id="mobile" required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="aadhaar">AADHAAR Number</label>
+            <input type="text" id="aadhaar">
+          </div>
+          <div>
+            <label for="pan">PAN Number</label>
+            <input type="text" id="pan">
+          </div>
+        </div>
+        <label for="address">Address *</label>
+        <textarea id="address" rows="3" required></textarea>
+
+        <div class="row">
+          <div>
+            <label for="country">Country</label>
+            <select id="country">
+              <option>India</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input type="text" id="state">
+          </div>
+          <div>
+            <label for="city">City</label>
+            <input type="text" id="city">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Co-Applicant Details -->
+      <fieldset>
+        <legend>Co-Applicant Details</legend>
+        <div class="row">
+          <div>
+            <label for="coName">Full Name</label>
+            <input type="text" id="coName">
+          </div>
+          <div>
+            <label for="coEmail">Email</label>
+            <input type="email" id="coEmail">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coAadhaar">AADHAAR Number</label>
+            <input type="text" id="coAadhaar">
+          </div>
+          <div>
+            <label for="coPan">PAN Number</label>
+            <input type="text" id="coPan">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="coMobile">Mobile No</label>
+            <input type="tel" id="coMobile">
+          </div>
+          <div>
+            <label for="coAltMobile">Alternate Mobile No</label>
+            <input type="tel" id="coAltMobile">
+          </div>
+        </div>
+        <label for="coAddress">Address</label>
+        <textarea id="coAddress" rows="3"></textarea>
+      </fieldset>
+
+      <!-- Preferences -->
+      <fieldset>
+        <legend>Preferences</legend>
+        <div class="row">
+          <div>
+            <label for="unitPref">Unit Preference</label>
+            <select id="unitPref">
+              <option>Select Unit Preference</option>
+              <option>Corner Facing</option>
+              <option>Park Facing</option>
+              <option>Main Road Facing</option>
+            </select>
+          </div>
+          <div>
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod">
+              <option>Select Payment Method</option>
+              <option>Cash</option>
+              <option>Bank Transfer</option>
+              <option>Cheque</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="amount">Amount Received</label>
+            <input type="number" id="amount">
+          </div>
+          <div>
+            <label for="receipt">Payment Receipt</label>
+            <input type="file" id="receipt">
+          </div>
+        </div>
+        <label for="remarks">Remarks</label>
+        <textarea id="remarks" rows="3"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment QR</legend>
+        <p>Scan this QR code to make your payment:</p>
+        <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
+      </fieldset>
+
+      <button type="submit">Submit Direct Application</button>
+    </form>
+  </div>
+</body>
+</html>
