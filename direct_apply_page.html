@@ -17,8 +17,6 @@
     button:hover {background-color:#e09e00;}
     fieldset {border:1px solid #ddd; padding:20px; border-radius:8px; margin-top:30px; margin-bottom:30px;}
     legend {font-weight:bold; color:#065c4c;}
-
-    /* Mobile Responsive */
     @media (max-width: 600px) {
       .row {flex-direction: column; gap:15px;}
       .container {padding:20px; margin:15px;}
@@ -165,41 +163,41 @@
       </div>
     </fieldset>
 
-    <!-- Co-Applicant Details -->
+    <!-- Co-Applicant Details (Optional) -->
     <fieldset>
       <legend>Co-Applicant Details</legend>
       <div class="row">
         <div>
-          <label for="coName">Full Name *</label>
-          <input type="text" id="coName" name="coName" required>
+          <label for="coName">Full Name</label>
+          <input type="text" id="coName" name="coName">
         </div>
         <div>
-          <label for="coEmail">Email *</label>
-          <input type="email" id="coEmail" name="coEmail" required>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="coAadhaar">AADHAAR Number *</label>
-          <input type="text" id="coAadhaar" name="coAadhaar" required>
-        </div>
-        <div>
-          <label for="coPan">PAN Number *</label>
-          <input type="text" id="coPan" name="coPan" required>
+          <label for="coEmail">Email</label>
+          <input type="email" id="coEmail" name="coEmail">
         </div>
       </div>
       <div class="row">
         <div>
-          <label for="coMobile">Mobile No *</label>
-          <input type="tel" id="coMobile" name="coMobile" required>
+          <label for="coAadhaar">AADHAAR Number</label>
+          <input type="text" id="coAadhaar" name="coAadhaar">
+        </div>
+        <div>
+          <label for="coPan">PAN Number</label>
+          <input type="text" id="coPan" name="coPan">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="coMobile">Mobile No</label>
+          <input type="tel" id="coMobile" name="coMobile">
         </div>
         <div>
           <label for="coAltMobile">Alternate Mobile No</label>
           <input type="tel" id="coAltMobile" name="coAltMobile">
         </div>
       </div>
-      <label for="coAddress">Address *</label>
-      <textarea id="coAddress" name="coAddress" rows="3" required></textarea>
+      <label for="coAddress">Address</label>
+      <textarea id="coAddress" name="coAddress" rows="3"></textarea>
     </fieldset>
 
     <!-- Preferences -->
@@ -244,13 +242,14 @@ document.querySelector("form").addEventListener("submit", function(e){
   // Email Validation
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   const applicantEmail = document.getElementById("applicantEmail").value.trim();
-  const coEmail = document.getElementById("coEmail").value.trim();
   if(!emailPattern.test(applicantEmail)){
     alert("Enter a valid Applicant Email.");
     e.preventDefault();
     return false;
   }
-  if(!emailPattern.test(coEmail)){
+
+  const coEmail = document.getElementById("coEmail").value.trim();
+  if(coEmail && !emailPattern.test(coEmail)){
     alert("Enter a valid Co-Applicant Email.");
     e.preventDefault();
     return false;
@@ -259,18 +258,20 @@ document.querySelector("form").addEventListener("submit", function(e){
   // Phone Validation
   const phonePattern = /^[6-9]\d{9}$/;
   const mobile = document.getElementById("mobile").value.trim();
-  const coMobile = document.getElementById("coMobile").value.trim();
-  const coAltMobile = document.getElementById("coAltMobile").value.trim();
   if(!phonePattern.test(mobile)){
     alert("Applicant Mobile must be 10 digits starting with 6-9.");
     e.preventDefault();
     return false;
   }
-  if(!phonePattern.test(coMobile)){
+
+  const coMobile = document.getElementById("coMobile").value.trim();
+  if(coMobile && !phonePattern.test(coMobile)){
     alert("Co-Applicant Mobile must be 10 digits starting with 6-9.");
     e.preventDefault();
     return false;
   }
+
+  const coAltMobile = document.getElementById("coAltMobile").value.trim();
   if(coAltMobile && !phonePattern.test(coAltMobile)){
     alert("Alternate Mobile must be 10 digits starting with 6-9.");
     e.preventDefault();
@@ -279,35 +280,38 @@ document.querySelector("form").addEventListener("submit", function(e){
 
   // Aadhaar Validation
   const aadhaar = document.getElementById("aadhaar").value.trim();
-  const coAadhaar = document.getElementById("coAadhaar").value.trim();
   if(!/^\d{12}$/.test(aadhaar)){
     alert("Applicant Aadhaar must be 12 digits.");
     e.preventDefault();
     return false;
   }
-  if(!/^\d{12}$/.test(coAadhaar)){
+
+  const coAadhaar = document.getElementById("coAadhaar").value.trim();
+  if(coAadhaar && !/^\d{12}$/.test(coAadhaar)){
     alert("Co-Applicant Aadhaar must be 12 digits.");
     e.preventDefault();
     return false;
   }
 
-  // PAN Validation (Convert to uppercase first)
+  // PAN Validation (case-insensitive, convert to uppercase before submit)
   const pan = document.getElementById("pan").value.trim().toUpperCase();
-  const coPan = document.getElementById("coPan").value.trim().toUpperCase();
-  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)){
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i.test(pan)){
     alert("Applicant PAN must be in format ABCDE1234F.");
     e.preventDefault();
     return false;
   }
-  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(coPan)){
-    alert("Co-Applicant PAN must be in format ABCDE1234F.");
-    e.preventDefault();
-    return false;
-  }
-
-  // Optional: Replace original input with uppercase
   document.getElementById("pan").value = pan;
-  document.getElementById("coPan").value = coPan;
+
+  const coPan = document.getElementById("coPan").value.trim();
+  if(coPan){
+    const coPanUpper = coPan.toUpperCase();
+    if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i.test(coPanUpper)){
+      alert("Co-Applicant PAN must be in format ABCDE1234F.");
+      e.preventDefault();
+      return false;
+    }
+    document.getElementById("coPan").value = coPanUpper;
+  }
 });
 </script>
 </body>
