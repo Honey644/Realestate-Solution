@@ -117,8 +117,8 @@
             <label for="paymentPlan">Payment Plan</label>
             <select id="paymentPlan">
               <option>Select</option>
-              <option>Full Payment</option>
-              <option>Installments</option>
+              <option>PLP</option>
+              <option>DP</option>
             </select>
           </div>
         </div>
@@ -177,6 +177,23 @@
             <input type="text" id="city" name="city">
           </div>
         </div>
+        
+        <div class="row">
+          <div>
+            <label for="country">Relationship Manager</label>
+            <select id="country" name="country">
+              <option>Uttkarsh</option>
+              <option>Satyam</option>
+            </select>
+          </div>
+           <div>
+            <label for="country">Supporting Manager</label>
+            <select id="country" name="country">
+              <option>Uttkarsh</option>
+              <option>Satyam</option>
+            </select>
+          </div>
+        </div>
       </fieldset>
 
       <!-- Co-Applicant Details -->
@@ -229,7 +246,7 @@
               <option>Main Road Facing</option>
             </select>
           </div>
-          <div>
+          <!-- <div>
             <label for="paymentMethod">Payment Method</label>
             <select id="paymentMethod" name="paymentMethod">
               <option>Select Payment Method</option>
@@ -238,15 +255,15 @@
               <option>Cheque</option>
             </select>
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div>
-            <label for="amount">Amount Received</label>
+            <label for="amount">Amount Paid</label>
             <input type="number" id="amount" name="amount">
           </div>
           <div>
-            <label for="receipt">Payment Receipt</label>
-            <input type="file" id="receipt" name="receipt">
+            <label for="receipt">Transaction Id</label>
+            <input type="number" id="receipt" name="receipt">
           </div>
         </div>
         <label for="remarks">Remarks</label>
