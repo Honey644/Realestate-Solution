@@ -33,6 +33,13 @@
       text-align: center;
       color: #007bff;
     }
+    h3 {
+      grid-column: span 2;
+      margin-top: 20px;
+      color: #444;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+    }
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -89,14 +96,17 @@
     <form name="direct-apply" method="POST" data-netlify="true">
       <input type="hidden" name="form-name" value="direct-apply">
 
+      <!-- Applicant Details -->
+      <h3>Applicant Details</h3>
+
       <div class="form-group">
         <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+        <input type="text" id="full-name" name="full-name" required>
       </div>
 
       <div class="form-group">
         <label for="father-name">Father's Name</label>
-        <input type="text" id="father-name" name="father-name" placeholder="Enter your father's name" required>
+        <input type="text" id="father-name" name="father-name" required>
       </div>
 
       <div class="form-group">
@@ -116,63 +126,41 @@
 
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+        <input type="email" id="email" name="email" required>
       </div>
 
       <div class="form-group">
         <label for="phone">Mobile Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required>
+        <input type="tel" id="phone" name="phone" required>
       </div>
 
       <div class="form-group full-width">
         <label for="address">Address</label>
-        <textarea id="address" name="address" placeholder="Enter your full address" required></textarea>
+        <textarea id="address" name="address" required></textarea>
       </div>
 
       <div class="form-group">
         <label for="city">City</label>
-        <input type="text" id="city" name="city" placeholder="Enter your city" required>
+        <input type="text" id="city" name="city" required>
       </div>
 
       <div class="form-group">
         <label for="state">State</label>
         <select id="state" name="state" required>
           <option value="">-- Select State --</option>
-          <option>Andhra Pradesh</option>
-          <option>Arunachal Pradesh</option>
-          <option>Assam</option>
-          <option>Bihar</option>
-          <option>Chhattisgarh</option>
           <option>Delhi</option>
-          <option>Goa</option>
-          <option>Gujarat</option>
-          <option>Haryana</option>
-          <option>Himachal Pradesh</option>
-          <option>Jharkhand</option>
-          <option>Karnataka</option>
-          <option>Kerala</option>
-          <option>Madhya Pradesh</option>
-          <option>Maharashtra</option>
-          <option>Manipur</option>
-          <option>Meghalaya</option>
-          <option>Mizoram</option>
-          <option>Nagaland</option>
-          <option>Odisha</option>
-          <option>Punjab</option>
-          <option>Rajasthan</option>
-          <option>Sikkim</option>
-          <option>Tamil Nadu</option>
-          <option>Telangana</option>
-          <option>Tripura</option>
           <option>Uttar Pradesh</option>
-          <option>Uttarakhand</option>
-          <option>West Bengal</option>
+          <option>Haryana</option>
+          <option>Maharashtra</option>
+          <option>Karnataka</option>
+          <option>Punjab</option>
+          <!-- add more states as needed -->
         </select>
       </div>
 
       <div class="form-group">
         <label for="pin">PIN Code</label>
-        <input type="text" id="pin" name="pin" placeholder="Enter PIN code" required>
+        <input type="text" id="pin" name="pin" required>
       </div>
 
       <div class="form-group">
@@ -187,9 +175,110 @@
         </select>
       </div>
 
+      <!-- Co-Applicant Details -->
+      <h3>Co-Applicant Details</h3>
+
+      <div class="form-group">
+        <label for="co-full-name">Full Name</label>
+        <input type="text" id="co-full-name" name="co-full-name">
+      </div>
+
+      <div class="form-group">
+        <label for="co-father-name">Father's Name</label>
+        <input type="text" id="co-father-name" name="co-father-name">
+      </div>
+
+      <div class="form-group">
+        <label for="co-dob">Date of Birth</label>
+        <input type="date" id="co-dob" name="co-dob">
+      </div>
+
+      <div class="form-group">
+        <label for="co-gender">Gender</label>
+        <select id="co-gender" name="co-gender">
+          <option value="">-- Select Gender --</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="co-email">Email Address</label>
+        <input type="email" id="co-email" name="co-email">
+      </div>
+
+      <div class="form-group">
+        <label for="co-phone">Mobile Number</label>
+        <input type="tel" id="co-phone" name="co-phone">
+      </div>
+
       <div class="form-group full-width">
-        <label for="remarks">Remarks (Optional)</label>
-        <textarea id="remarks" name="remarks" placeholder="Any additional details..."></textarea>
+        <label for="co-address">Address</label>
+        <textarea id="co-address" name="co-address"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="co-city">City</label>
+        <input type="text" id="co-city" name="co-city">
+      </div>
+
+      <div class="form-group">
+        <label for="co-state">State</label>
+        <select id="co-state" name="co-state">
+          <option value="">-- Select State --</option>
+          <option>Delhi</option>
+          <option>Uttar Pradesh</option>
+          <option>Haryana</option>
+          <option>Maharashtra</option>
+          <option>Karnataka</option>
+          <option>Punjab</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="co-pin">PIN Code</label>
+        <input type="text" id="co-pin" name="co-pin">
+      </div>
+
+      <div class="form-group">
+        <label for="co-id-proof">ID Proof</label>
+        <select id="co-id-proof" name="co-id-proof">
+          <option value="">-- Select ID Proof --</option>
+          <option>Aadhar Card</option>
+          <option>PAN Card</option>
+          <option>Voter ID</option>
+          <option>Passport</option>
+          <option>Driving License</option>
+        </select>
+      </div>
+
+      <!-- Preferences -->
+      <h3>Preferences</h3>
+
+      <div class="form-group">
+        <label for="unit-pref">Unit Preference</label>
+        <select id="unit-pref" name="unit-pref">
+          <option value="">-- Select Preference --</option>
+          <option>Corner Facing</option>
+          <option>Park Facing</option>
+          <option>Main Road Facing</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount Paid</label>
+        <input type="number" id="amount" name="amount">
+      </div>
+
+      <div class="form-group">
+        <label for="transaction-id">Transaction ID</label>
+        <input type="text" id="transaction-id" name="transaction-id">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="remarks">Remarks</label>
+        <textarea id="remarks" name="remarks"></textarea>
       </div>
 
       <button type="submit">Submit Application</button>
