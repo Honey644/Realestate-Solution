@@ -35,9 +35,8 @@ legend {font-weight:bold; color:#065c4c;}
 <h1>Welcome to the Direct Apply Form</h1>
 <p>Start your instant booking application process here.</p>
 
-<form id="directApplyForm" name="direct-apply" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<form id="directApplyForm" name="direct-apply" method="POST" data-netlify="true" action="thank-you.html">
   <input type="hidden" name="form-name" value="direct-apply">
-  <input type="hidden" name="bot-field">
 
   <!-- Project Details -->
   <fieldset>
@@ -226,7 +225,7 @@ function validateField(id,type,optional=false){
 
 function checkFormValidity(){
   const requiredFields = ["project","unitType","paymentPlan","fullName","fatherName","applicantEmail","mobile","aadhaar","pan","address"];
-  const allFilled = requiredFields.every(id=>document.getElementById(id).value.trim()!=="");
+  const allFilled = requiredFields.every(id => document.getElementById(id).value.trim()!=="");
 
   const emailValid = validateField("applicantEmail","email");
   const mobileValid = validateField("mobile","mobile");
@@ -239,29 +238,28 @@ function checkFormValidity(){
   const coAadhaarValid = document.getElementById("coAadhaar").value.trim()==="" || validateField("coAadhaar","aadhaar",true);
   const coPanValid = document.getElementById("coPan").value.trim()==="" || validateField("coPan","pan",true);
 
-  submitBtn.disabled = !(allFilled && emailValid && mobileValid && panValid && aadhaarValid && coEmailValid && coMobileValid && coAltValid && coAadhaarValid && coPanValid);
+  submitBtn.disabled = !(allFilled && emailValid && mobileValid && panValid && aadhaarValid &&
+                         coEmailValid && coMobileValid && coAltValid && coAadhaarValid && coPanValid);
 }
 
-// Add input listeners for validation
+// Input listeners
 ["applicantEmail","mobile","pan","aadhaar","coEmail","coMobile","coAltMobile","coPan","coAadhaar"].forEach(id=>{
   const el = document.getElementById(id);
   const type = id.includes("email")?"email":id.includes("mobile")?"mobile":id.includes("aadhaar")?"aadhaar":"pan";
   el.addEventListener("input", ()=>{
-    if(type==="mobile"||type==="aadhaar"){
-      const max = type==="mobile"?10:12;
-      if(el.value.length>max) el.value = el.value.slice(0,max);
-    }
+    if(type==="mobile"||type==="aadhaar"){ const max = type==="mobile"?10:12; if(el.value.length>max) el.value = el.value.slice(0,max);}
     validateField(id,type,id.startsWith("co"));
     checkFormValidity();
   });
 });
 
-// Handle Netlify submission + redirect
+checkFormValidity();
+
+// Netlify submit + redirect
 form.addEventListener("submit", e=>{
   e.preventDefault();
   checkFormValidity();
   if(submitBtn.disabled) return;
-
   const formData = new FormData(form);
   fetch("/", {method:"POST", body:formData})
     .then(()=>{ window.location.href="thank-you.html"; })
