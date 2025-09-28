@@ -241,29 +241,73 @@
 
 <script>
 document.querySelector("form").addEventListener("submit", function(e){
+  // Email Validation
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   const applicantEmail = document.getElementById("applicantEmail").value.trim();
   const coEmail = document.getElementById("coEmail").value.trim();
-  if(!emailPattern.test(applicantEmail)){ alert("Enter a valid Applicant Email."); e.preventDefault(); return false;}
-  if(!emailPattern.test(coEmail)){ alert("Enter a valid Co-Applicant Email."); e.preventDefault(); return false;}
+  if(!emailPattern.test(applicantEmail)){
+    alert("Enter a valid Applicant Email.");
+    e.preventDefault();
+    return false;
+  }
+  if(!emailPattern.test(coEmail)){
+    alert("Enter a valid Co-Applicant Email.");
+    e.preventDefault();
+    return false;
+  }
 
+  // Phone Validation
   const phonePattern = /^[6-9]\d{9}$/;
   const mobile = document.getElementById("mobile").value.trim();
   const coMobile = document.getElementById("coMobile").value.trim();
   const coAltMobile = document.getElementById("coAltMobile").value.trim();
-  if(!phonePattern.test(mobile)){ alert("Applicant Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
-  if(!phonePattern.test(coMobile)){ alert("Co-Applicant Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
-  if(coAltMobile && !phonePattern.test(coAltMobile)){ alert("Alternate Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
+  if(!phonePattern.test(mobile)){
+    alert("Applicant Mobile must be 10 digits starting with 6-9.");
+    e.preventDefault();
+    return false;
+  }
+  if(!phonePattern.test(coMobile)){
+    alert("Co-Applicant Mobile must be 10 digits starting with 6-9.");
+    e.preventDefault();
+    return false;
+  }
+  if(coAltMobile && !phonePattern.test(coAltMobile)){
+    alert("Alternate Mobile must be 10 digits starting with 6-9.");
+    e.preventDefault();
+    return false;
+  }
 
+  // Aadhaar Validation
   const aadhaar = document.getElementById("aadhaar").value.trim();
   const coAadhaar = document.getElementById("coAadhaar").value.trim();
-  if(!/^\d{12}$/.test(aadhaar)){ alert("Applicant Aadhaar must be 12 digits."); e.preventDefault(); return false;}
-  if(!/^\d{12}$/.test(coAadhaar)){ alert("Co-Applicant Aadhaar must be 12 digits."); e.preventDefault(); return false;}
+  if(!/^\d{12}$/.test(aadhaar)){
+    alert("Applicant Aadhaar must be 12 digits.");
+    e.preventDefault();
+    return false;
+  }
+  if(!/^\d{12}$/.test(coAadhaar)){
+    alert("Co-Applicant Aadhaar must be 12 digits.");
+    e.preventDefault();
+    return false;
+  }
 
-  const pan = document.getElementById("pan").value.trim();
-  const coPan = document.getElementById("coPan").value.trim();
-  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)){ alert("Applicant PAN must be in format ABCDE1234F."); e.preventDefault(); return false;}
-  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(coPan)){ alert("Co-Applicant PAN must be in format ABCDE1234F."); e.preventDefault(); return false;}
+  // PAN Validation (Convert to uppercase first)
+  const pan = document.getElementById("pan").value.trim().toUpperCase();
+  const coPan = document.getElementById("coPan").value.trim().toUpperCase();
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)){
+    alert("Applicant PAN must be in format ABCDE1234F.");
+    e.preventDefault();
+    return false;
+  }
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(coPan)){
+    alert("Co-Applicant PAN must be in format ABCDE1234F.");
+    e.preventDefault();
+    return false;
+  }
+
+  // Optional: Replace original input with uppercase
+  document.getElementById("pan").value = pan;
+  document.getElementById("coPan").value = coPan;
 });
 </script>
 </body>
