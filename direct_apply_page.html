@@ -35,8 +35,9 @@ legend {font-weight:bold; color:#065c4c;}
 <h1>Welcome to the Direct Apply Form</h1>
 <p>Start your instant booking application process here.</p>
 
-<form id="directApplyForm" name="direct-apply" method="POST" data-netlify="true" action="/thank-you.html">
+<form id="directApplyForm" name="direct-apply" method="POST" data-netlify="true" netlify-honeypot="bot-field">
   <input type="hidden" name="form-name" value="direct-apply">
+  <input type="hidden" name="bot-field">
 
   <!-- Project Details -->
   <fieldset>
@@ -255,13 +256,16 @@ function checkFormValidity(){
   });
 });
 
-form.addEventListener("input", checkFormValidity);
-
+// Handle Netlify submission + redirect
 form.addEventListener("submit", e=>{
+  e.preventDefault();
   checkFormValidity();
-  if(submitBtn.disabled){ e.preventDefault(); return; }
-  // Optional: Reset form after short delay
-  setTimeout(()=>{ form.reset(); submitBtn.disabled=true; },100);
+  if(submitBtn.disabled) return;
+
+  const formData = new FormData(form);
+  fetch("/", {method:"POST", body:formData})
+    .then(()=>{ window.location.href="thank-you.html"; })
+    .catch(err=>alert("Form submission failed: "+err));
 });
 </script>
 </body>
