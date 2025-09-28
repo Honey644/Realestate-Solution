@@ -1,76 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Scheme Apply • SV Realty Solutions</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheme Apply | SV Realty Solution</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#f9f9f9; padding:2rem; }
-    form { background:#fff; padding:2rem; border-radius:10px; max-width:900px; margin:auto; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-    h1 { text-align:center; margin-bottom:2rem; color:#1a1a2e; }
-    label { font-weight:bold; display:block; margin-top:1rem; color:#1a1a2e; }
-    input, select, textarea { width:100%; padding:0.8rem; margin-top:0.5rem; border:1px solid #ccc; border-radius:6px; font-size:1rem; }
-    .row { display:flex; gap:1rem; }
-    .row > div { flex:1; }
-    button { background:#ffcc00; border:none; padding:1rem 2rem; margin-top:2rem; border-radius:6px; cursor:pointer; font-weight:bold; }
-    button:hover { background:#e6b800; }
-    fieldset { border:1px solid #ddd; border-radius:8px; padding:1.5rem; margin-top:2rem; }
-    legend { font-weight:bold; padding:0 0.5rem; }
+    body {margin:0; font-family:Arial,sans-serif; background:#f8f9fa; color:#333;}
+    header {background:#065c4c; color:#fff; padding:15px; text-align:center;}
+    .container {max-width:1000px; margin:30px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+    h1 {text-align:center; margin-bottom:20px; color:#065c4c;}
+    form label {display:block; margin-top:10px; font-weight:bold;}
+    form input, form select, form textarea {width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;}
+    .row {display:flex; gap:40px; flex-wrap:wrap; margin-bottom:20px;}
+    .row > div {flex:1; min-width:250px;}
+    button {background-color:#ffb400; border:none; padding:12px 25px; color:#000; font-weight:bold; border-radius:5px; cursor:pointer; margin-top:20px;}
+    button:hover {background-color:#e09e00;}
+    button:disabled {background-color:#ccc; cursor:not-allowed;}
+    fieldset {border:1px solid #ddd; padding:20px; border-radius:8px; margin-top:30px; margin-bottom:30px;}
+    legend {font-weight:bold; color:#065c4c;}
+    .error {color:red; font-size:0.9em; margin-top:5px;}
+
+    @media (max-width: 600px) {
+      .row {flex-direction: column; gap:15px;}
+      .container {padding:20px; margin:15px;}
+      button {width:100%; padding:12px;}
+    }
   </style>
 </head>
 <body>
+<header>
+  <h2>SV Realty Solution - Scheme Apply</h2>
+</header>
+
+<div class="container">
   <h1>Scheme Application Form</h1>
-  <form id="schemeApplyForm">
-    
-    <!-- Scheme Selection -->
+  <form id="schemeApplyForm" method="POST" data-netlify="true" name="scheme-apply">
+    <input type="hidden" name="form-name" value="scheme-apply">
+
+    <!-- Scheme Details -->
     <fieldset>
       <legend>Scheme Details</legend>
       <div class="row">
         <div>
-          <label for="scheme">Scheme</label>
+          <label for="scheme">Scheme *</label>
           <select id="scheme" name="scheme" required>
             <option value="">Select</option>
-            <option>Lucky Draw</option>
-            <option>Direct Sale</option>
-          </select>
+            <option>Tourism development Plan Khatu(Sikar, RJ) and LansDown(Uttrakhand)
+</option>
+        </select>
         </div>
         <div>
-          <label for="project">Project</label>
+          <label for="project">Project *</label>
           <select id="project" name="project" required>
             <option value="">Select</option>
-            <option>Project A</option>
-            <option>Project B</option>
+            <option>SHRI JI VAN</option>
+            <option>KHATU ELEGENCE</option>
           </select>
         </div>
       </div>
-
       <div class="row">
         <div>
-          <label for="unitType">Unit Type</label>
+          <label for="unitType">Unit Type *</label>
           <select id="unitType" name="unitType" required>
             <option value="">Select</option>
-            <option>Plot</option>
-            <option>Flat</option>
-            <option>Commercial</option>
+            <option>Residential Plot</option>
+            <option>Commercial Plot</option>
+            <option>Farmhouse</option>
+            <option>Villa</option>
           </select>
         </div>
         <div>
-          <label for="plan">Plan</label>
+          <label for="plan">Plan *</label>
           <select id="plan" name="plan" required>
             <option value="">Select</option>
-            <option>Plan A</option>
-            <option>Plan B</option>
+            <option>PLP</option>
+            <option>DP</option>
           </select>
         </div>
       </div>
-
-      <label for="paymentPlan">Payment Plan</label>
-      <select id="paymentPlan" name="paymentPlan" required>
-        <option value="">Select</option>
-        <option>Full Payment</option>
-        <option>Installments</option>
-      </select>
-    </fieldset>
+      </fieldset>
 
     <!-- Applicant Details -->
     <fieldset>
@@ -78,35 +86,39 @@
       <label for="fullName">Full Name *</label>
       <input type="text" id="fullName" name="fullName" required>
 
-      <label for="fatherName">Father's Name *</label>
+      <label for="fatherName">S/o, D/o, W/o *</label>
       <input type="text" id="fatherName" name="fatherName" required>
 
       <div class="row">
         <div>
           <label for="email">Email *</label>
           <input type="email" id="email" name="email" required>
+          <div id="emailError" class="error"></div>
         </div>
         <div>
           <label for="mobile">Mobile No *</label>
-          <input type="tel" id="mobile" name="mobile" required>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" required>
+          <div id="mobileError" class="error"></div>
         </div>
       </div>
 
       <div class="row">
         <div>
-          <label for="pan">PAN Number</label>
-          <input type="text" id="pan" name="pan">
+          <label for="pan">PAN Number *</label>
+          <input type="text" id="pan" name="pan" maxlength="10" required>
+          <div id="panError" class="error"></div>
         </div>
         <div>
-          <label for="aadhaar">Aadhaar Number</label>
-          <input type="text" id="aadhaar" name="aadhaar">
+          <label for="aadhaar">Aadhaar Number *</label>
+          <input type="text" id="aadhaar" name="aadhaar" maxlength="12" required>
+          <div id="aadhaarError" class="error"></div>
         </div>
       </div>
 
       <div class="row">
         <div>
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob" name="dob">
+          <label for="dob">Date of Birth *</label>
+          <input type="date" id="dob" name="dob" required>
         </div>
         <div>
           <label for="anniversary">Date of Anniversary</label>
@@ -114,30 +126,64 @@
         </div>
       </div>
 
-      <label for="address">Address</label>
-      <textarea id="address" name="address" rows="3"></textarea>
+      <label for="address">Address *</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+    </fieldset>
+
+    <!-- Co-Applicant Details -->
+    <fieldset>
+      <legend>Co-Applicant Details (Optional)</legend>
+      <label for="coName">Full Name</label>
+      <input type="text" id="coName" name="coName">
+
+      <div class="row">
+        <div>
+          <label for="coEmail">Email</label>
+          <input type="email" id="coEmail" name="coEmail">
+          <div id="coEmailError" class="error"></div>
+        </div>
+        <div>
+          <label for="coMobile">Mobile No</label>
+          <input type="tel" id="coMobile" name="coMobile" maxlength="10">
+          <div id="coMobileError" class="error"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="coPan">PAN Number</label>
+          <input type="text" id="coPan" name="coPan" maxlength="10">
+          <div id="coPanError" class="error"></div>
+        </div>
+        <div>
+          <label for="coAadhaar">Aadhaar Number</label>
+          <input type="text" id="coAadhaar" name="coAadhaar" maxlength="12">
+          <div id="coAadhaarError" class="error"></div>
+        </div>
+      </div>
+
+      <label for="coAddress">Address</label>
+      <textarea id="coAddress" name="coAddress" rows="3"></textarea>
     </fieldset>
 
     <!-- Preferences -->
     <fieldset>
       <legend>Preferences</legend>
-      <label for="luckyDraw">Lucky Draw Date</label>
-      <input type="date" id="luckyDraw" name="luckyDraw">
-
       <div class="row">
         <div>
           <label for="size">Size Type</label>
           <select id="size" name="size">
             <option value="">Select</option>
-            <option>100 Sq Yd</option>
-            <option>200 Sq Yd</option>
+            <option><100 Sq Yd</option>
+            <option>>100 Sq Yd</option>
+            <option>=100 Sq Yd</option>
           </select>
         </div>
         <div>
           <label for="facing">Facing</label>
           <select id="facing" name="facing">
             <option value="">Select</option>
-            <option>Corner</option>
+            <option>Corner Facing</option>
             <option>Park Facing</option>
             <option>Main Road</option>
           </select>
@@ -155,39 +201,95 @@
           </select>
         </div>
         <div>
-          <label for="amount">Amount Received</label>
+          <label for="amount">Amount Paid</label>
           <input type="number" id="amount" name="amount">
         </div>
       </div>
 
-      <label for="remark">Remark</label>
-      <textarea id="remark" name="remark" rows="2"></textarea>
-
-      <label for="receipt">Payment Receipt</label>
-      <input type="file" id="receipt" name="receipt">
+      <label for="receipt">Transaction Id</label>
+      <input type="text" id="receipt" name="receipt">
     </fieldset>
 
-    <button type="submit">Submit Application</button>
+    <!-- QR Code -->
+    <fieldset>
+      <legend>Payment QR</legend>
+      <p>Scan this QR code to make your payment:</p>
+      <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
+    </fieldset>
+
+    <button type="submit" id="submitBtn" disabled>Submit Application</button>
   </form>
+</div>
 
-  <script>
-    document.getElementById("schemeApplyForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const payload = Object.fromEntries(formData.entries());
+<script>
+  const form = document.getElementById("schemeApplyForm");
+  const submitBtn = document.getElementById("submitBtn");
 
-      try {
-        const res = await fetch("/.netlify/functions/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        const data = await res.json();
-        alert(data.msg || "Form submitted!");
-      } catch (err) {
-        alert("Error submitting form.");
-      }
+  const validators = {
+    email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    mobile: value => /^[6-9]\d{9}$/.test(value),
+    pan: value => /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/.test(value),
+    aadhaar: value => /^\d{12}$/.test(value)
+  };
+
+  function validateField(id, type, optional=false){
+    const value = document.getElementById(id).value.trim();
+    const errorDiv = document.getElementById(id+"Error");
+    if(!value && optional) {
+      errorDiv.textContent = "";
+      return true;
+    }
+    if(!validators[type](value)){
+      errorDiv.textContent = type.toUpperCase() + " is invalid";
+      return false;
+    }
+    errorDiv.textContent = "";
+    return true;
+  }
+
+  function checkFormValidity(){
+    const requiredFields = [
+      "scheme","project","unitType","plan","paymentPlan",
+      "fullName","fatherName","email","mobile"
+    ];
+    const valid = requiredFields.every(id=>{
+      const el = document.getElementById(id);
+      return el.value.trim() !== "";
     });
-  </script>
+
+    const emailValid = validateField("email","email");
+    const mobileValid = validateField("mobile","mobile");
+    const panValid = document.getElementById("pan").value.trim()==="" || validateField("pan","pan",true);
+    const aadhaarValid = document.getElementById("aadhaar").value.trim()==="" || validateField("aadhaar","aadhaar",true);
+
+    const coEmailValid = document.getElementById("coEmail").value.trim()==="" || validateField("coEmail","email",true);
+    const coMobileValid = document.getElementById("coMobile").value.trim()==="" || validateField("coMobile","mobile",true);
+    const coPanValid = document.getElementById("coPan").value.trim()==="" || validateField("coPan","pan",true);
+    const coAadhaarValid = document.getElementById("coAadhaar").value.trim()==="" || validateField("coAadhaar","aadhaar",true);
+
+    submitBtn.disabled = !(valid && emailValid && mobileValid && panValid && aadhaarValid && coEmailValid && coMobileValid && coPanValid && coAadhaarValid);
+  }
+
+  // Add real-time validation
+  ["email","mobile","pan","aadhaar","coEmail","coMobile","coPan","coAadhaar"].forEach(id=>{
+    const el = document.getElementById(id);
+    const type = id.includes("email") ? "email" : id.includes("mobile") ? "mobile" : id.includes("aadhaar") ? "aadhaar" : "pan";
+    el.addEventListener("input",()=>{
+      if(type==="mobile" || type==="aadhaar"){
+        const max = type==="mobile"?10:12;
+        if(el.value.length > max) el.value = el.value.slice(0,max);
+      }
+      validateField(id,type,id.startsWith("co"));
+      checkFormValidity();
+    });
+  });
+
+  form.addEventListener("input", checkFormValidity);
+  form.addEventListener("submit", e=>{
+    checkFormValidity();
+    if(submitBtn.disabled) e.preventDefault();
+  });
+
+</script>
 </body>
 </html>
