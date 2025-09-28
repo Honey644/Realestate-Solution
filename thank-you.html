@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You | SV Realty Solution</title>
-  <style>
-    body {margin:0; font-family:Arial,sans-serif; background:#f8f9fa; color:#333;}
-    header {background:#065c4c; color:#fff; padding:15px; text-align:center;}
-    .container {max-width:800px; margin:50px auto; background:#fff; padding:40px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center;}
-    h1 {color:#065c4c; margin-bottom:20px;}
-    p {font-size:1.2em; margin-bottom:30px;}
-    a.button {display:inline-block; background:#ffb400; color:#000; text-decoration:none; padding:12px 25px; font-weight:bold; border-radius:5px;}
-    a.button:hover {background:#e09e00;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You</title>
+<style>
+  body {font-family:Arial,sans-serif; text-align:center; padding:50px;}
+  h1 {color:#065c4c;}
+</style>
 </head>
 <body>
-<header>
-  <h2>SV Realty Solution</h2>
-</header>
-
-<div class="container">
-  <h1>Thank You!</h1>
-  <p>Your application has been successfully submitted. Our team will contact you soon.</p>
-  <a class="button" href="index.html">Go to Home</a>
-</div>
+<h1>Thank you for submitting your application!</h1>
+<p>You will be redirected to the homepage shortly...</p>
+<script>
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5000); // redirect after 5 seconds
+</script>
 </body>
 </html>
