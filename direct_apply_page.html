@@ -5,359 +5,266 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Direct Apply | SV Realty Solution</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
-    header {
-      background-color: #065c4c;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #065c4c;
-    }
-    form label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .row {
-      display: flex;
-      gap: 40px;   /* ✅ more gap between fields */
-      flex-wrap: wrap;
-      margin-bottom: 20px; /* ✅ vertical spacing between rows */
-    }
-    .row > div {
-      flex: 1;
-      min-width: 250px;
-    }
-    button {
-      background-color: #ffb400;
-      border: none;
-      padding: 12px 25px;
-      color: #000;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #e09e00;
-    }
-    fieldset {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-    legend {
-      font-weight: bold;
-      color: #065c4c;
+    body {margin:0; font-family:Arial,sans-serif; background:#f8f9fa; color:#333;}
+    header {background:#065c4c; color:#fff; padding:15px; text-align:center;}
+    .container {max-width:1000px; margin:30px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+    h1 {text-align:center; margin-bottom:20px; color:#065c4c;}
+    form label {display:block; margin-top:10px; font-weight:bold;}
+    form input, form select, form textarea {width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;}
+    .row {display:flex; gap:40px; flex-wrap:wrap; margin-bottom:20px;}
+    .row > div {flex:1; min-width:250px;}
+    button {background-color:#ffb400; border:none; padding:12px 25px; color:#000; font-weight:bold; border-radius:5px; cursor:pointer; margin-top:20px;}
+    button:hover {background-color:#e09e00;}
+    fieldset {border:1px solid #ddd; padding:20px; border-radius:8px; margin-top:30px; margin-bottom:30px;}
+    legend {font-weight:bold; color:#065c4c;}
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .row {flex-direction: column; gap:15px;}
+      .container {padding:20px; margin:15px;}
+      button {width:100%; padding:12px;}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h2>SV Realty Solution - Direct Apply</h2>
-  </header>
+<header>
+  <h2>SV Realty Solution - Direct Apply</h2>
+</header>
 
-  <div class="container">
-    <h1>Welcome to the Direct Apply Form</h1>
-    <p>Start your instant booking application process here.</p>
+<div class="container">
+  <h1>Welcome to the Direct Apply Form</h1>
+  <p>Start your instant booking application process here.</p>
 
-    <form name="direct-apply" method="POST" data-netlify="true">
-      
-      <!-- Project Details -->
-      <fieldset>
-        <legend>Project Details</legend>
-        <div class="row">
-          <div>
-            <label for="project">Project</label>
-            <select id="project" required>
-              <option value="">Select</option>
-              <option>Residential Plot</option>
-              <option>Commercial Plot</option>
-              <option>Farmhouse</option>
-              <option>Villa</option>
-            </select>
-          </div>
-          <div>
-            <label for="unitType">Unit Type</label>
-            <select id="unitType" required>
-              <option value="">Select</option>
-              <option>Plot</option>
-              <option>Shop</option>
-              <option>Farmhouse</option>
-              <option>Villa</option>
-            </select>
-          </div>
-          <div>
-            <label for="paymentPlan">Payment Plan</label>
-            <select id="paymentPlan" required>
-              <option value="">Select</option>
-              <option>PLP</option>
-              <option>DP</option>
-            </select>
-          </div>
+  <form name="direct-apply" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="direct-apply">
+
+    <!-- Project Details -->
+    <fieldset>
+      <legend>Project Details</legend>
+      <div class="row">
+        <div>
+          <label for="project">Project</label>
+          <select id="project" name="project" required>
+            <option value="">Select</option>
+            <option>Residential Plot</option>
+            <option>Commercial Plot</option>
+            <option>Farmhouse</option>
+            <option>Villa</option>
+          </select>
         </div>
-      </fieldset>
-
-      <!-- Applicant Details -->
-      <fieldset>
-        <legend>Applicant Details</legend>
-        <div class="row">
-          <div>
-            <label for="fullName">Full Name *</label>
-            <input type="text" id="fullName" required>
-          </div>
-          <div>
-            <label for="fatherName">S/o, D/o, W/o *</label>
-            <input type="text" id="fatherName" required>
-          </div>
+        <div>
+          <label for="unitType">Unit Type</label>
+          <select id="unitType" name="unitType" required>
+            <option value="">Select</option>
+            <option>Plot</option>
+            <option>Shop</option>
+            <option>Farmhouse</option>
+            <option>Villa</option>
+          </select>
         </div>
-        <div class="row">
-          <div>
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$" title="Enter a valid email (example: user@example.com)" required>
-          </div>
-          <div>
-            <label for="mobile">Mobile No *</label>
-            <input type="tel" id="mobile" pattern="[6-9]{1}[0-9]{9}" title="Enter valid 10 digit mobile no." required>
-          </div>
+        <div>
+          <label for="paymentPlan">Payment Plan</label>
+          <select id="paymentPlan" name="paymentPlan" required>
+            <option value="">Select</option>
+            <option>PLP</option>
+            <option>DP</option>
+          </select>
         </div>
-        <div class="row">
-          <div>
-            <label for="aadhaar">AADHAAR Number *</label>
-            <input type="text" id="aadhaar" pattern="\d{12}" title="AADHAAR must be 12 digits" required>
-          </div>
-          <div>
-            <label for="pan">PAN Number *</label>
-            <input type="text" id="pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="PAN format: ABCDE1234F" required>
-          </div>
+      </div>
+    </fieldset>
+
+    <!-- Applicant Details -->
+    <fieldset>
+      <legend>Applicant Details</legend>
+      <div class="row">
+        <div>
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required>
         </div>
-        <label for="address">Address *</label>
-        <textarea id="address" rows="3" required></textarea>
-
-        <div class="row">
-          <div>
-            <label for="country">Country</label>
-            <select id="country" required>
-              <option value="">Select</option>
-              <option>India</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="state">State</label>
-            <select id="state" required>
-              <option value="">-- Select State --</option>
-              <option>Andhra Pradesh</option>
-              <option>Arunachal Pradesh</option>
-              <option>Assam</option>
-              <option>Bihar</option>
-              <option>Chhattisgarh</option>
-              <option>Goa</option>
-              <option>Gujarat</option>
-              <option>Haryana</option>
-              <option>Himachal Pradesh</option>
-              <option>Jharkhand</option>
-              <option>Karnataka</option>
-              <option>Kerala</option>
-              <option>Madhya Pradesh</option>
-              <option>Maharashtra</option>
-              <option>Manipur</option>
-              <option>Meghalaya</option>
-              <option>Mizoram</option>
-              <option>Nagaland</option>
-              <option>Odisha</option>
-              <option>Punjab</option>
-              <option>Rajasthan</option>
-              <option>Sikkim</option>
-              <option>Tamil Nadu</option>
-              <option>Telangana</option>
-              <option>Uttar Pradesh</option>
-              <option>Uttarakhand</option>
-              <option>West Bengal</option>
-              <option>Andaman and Nicobar Islands</option>
-              <option>Chandigarh</option>
-              <option>Dadra and Nagar Haveli</option>
-              <option>Daman and Diu</option>
-              <option>Delhi</option>
-              <option>Lakshadweep</option>
-              <option>Puducherry</option>
-            </select>
-          </div>
-          <div>
-            <label for="city">City</label>
-            <input type="text" id="city" required>
-          </div>
+        <div>
+          <label for="fatherName">S/o, D/o, W/o *</label>
+          <input type="text" id="fatherName" name="fatherName" required>
         </div>
-      </fieldset>
-
-      <!-- Co-Applicant Details -->
-      <fieldset>
-        <legend>Co-Applicant Details</legend>
-        <div class="row">
-          <div>
-            <label for="coName">Full Name *</label>
-            <input type="text" id="coName" required>
-          </div>
-          <div>
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$" title="Enter a valid email (example: user@example.com)" required>
-          </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="applicantEmail">Email *</label>
+          <input type="email" id="applicantEmail" name="applicantEmail" required>
         </div>
-        <div class="row">
-          <div>
-            <label for="coAadhaar">AADHAAR Number *</label>
-            <input type="text" id="coAadhaar" pattern="\d{12}" title="AADHAAR must be 12 digits" required>
-          </div>
-          <div>
-            <label for="coPan">PAN Number *</label>
-            <input type="text" id="coPan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="PAN format: ABCDE1234F" required>
-          </div>
+        <div>
+          <label for="mobile">Mobile No *</label>
+          <input type="tel" id="mobile" name="mobile" required>
         </div>
-        <div class="row">
-          <div>
-            <label for="coMobile">Mobile No *</label>
-            <input type="tel" id="coMobile" pattern="[6-9]{1}[0-9]{9}" title="Enter valid 10 digit mobile no." required>
-          </div>
-          <div>
-            <label for="coAltMobile">Alternate Mobile No</label>
-            <input type="tel" id="coAltMobile" pattern="[6-9]{1}[0-9]{9}" title="Enter valid 10 digit mobile no.">
-          </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="aadhaar">AADHAAR Number *</label>
+          <input type="text" id="aadhaar" name="aadhaar" required>
         </div>
-        <label for="coAddress">Address *</label>
-        <textarea id="coAddress" rows="3" required></textarea>
-      </fieldset>
-
-      <!-- Preferences -->
-      <fieldset>
-        <legend>Preferences</legend>
-        <div class="row">
-          <div>
-            <label for="unitPref">Unit Preference</label>
-            <select id="unitPref">
-              <option value="">Select Unit Preference</option>
-              <option>Corner Facing</option>
-              <option>Park Facing</option>
-              <option>Main Road Facing</option>
-            </select>
-          </div>
+        <div>
+          <label for="pan">PAN Number *</label>
+          <input type="text" id="pan" name="pan" required>
         </div>
-        <div class="row">
-          <div>
-            <label for="amount">Amount Paid</label>
-            <input type="number" id="amount">
-          </div>
-          <div>
-            <label for="receipt">Transaction ID</label>
-            <input type="text" id="receipt">
-          </div>
+      </div>
+      <label for="address">Address *</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <div class="row">
+        <div>
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="">Select</option>
+            <option>India</option>
+            <option>Other</option>
+          </select>
         </div>
-      </fieldset>
+        <div>
+          <label for="state">State</label>
+          <select id="state" name="state" required>
+            <option value="">-- Select State --</option>
+            <option>Andhra Pradesh</option>
+            <option>Arunachal Pradesh</option>
+            <option>Assam</option>
+            <option>Bihar</option>
+            <option>Chhattisgarh</option>
+            <option>Goa</option>
+            <option>Gujarat</option>
+            <option>Haryana</option>
+            <option>Himachal Pradesh</option>
+            <option>Jharkhand</option>
+            <option>Karnataka</option>
+            <option>Kerala</option>
+            <option>Madhya Pradesh</option>
+            <option>Maharashtra</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Odisha</option>
+            <option>Punjab</option>
+            <option>Rajasthan</option>
+            <option>Sikkim</option>
+            <option>Tamil Nadu</option>
+            <option>Telangana</option>
+            <option>Uttar Pradesh</option>
+            <option>Uttarakhand</option>
+            <option>West Bengal</option>
+            <option>Andaman and Nicobar Islands</option>
+            <option>Chandigarh</option>
+            <option>Dadra and Nagar Haveli</option>
+            <option>Daman and Diu</option>
+            <option>Delhi</option>
+            <option>Lakshadweep</option>
+            <option>Puducherry</option>
+          </select>
+        </div>
+        <div>
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required>
+        </div>
+      </div>
+    </fieldset>
 
-      <!-- QR Code -->
-      <fieldset>
-        <legend>Payment QR</legend>
-        <p>Scan this QR code to make your payment:</p>
-        <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
-      </fieldset>
+    <!-- Co-Applicant Details -->
+    <fieldset>
+      <legend>Co-Applicant Details</legend>
+      <div class="row">
+        <div>
+          <label for="coName">Full Name *</label>
+          <input type="text" id="coName" name="coName" required>
+        </div>
+        <div>
+          <label for="coEmail">Email *</label>
+          <input type="email" id="coEmail" name="coEmail" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="coAadhaar">AADHAAR Number *</label>
+          <input type="text" id="coAadhaar" name="coAadhaar" required>
+        </div>
+        <div>
+          <label for="coPan">PAN Number *</label>
+          <input type="text" id="coPan" name="coPan" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="coMobile">Mobile No *</label>
+          <input type="tel" id="coMobile" name="coMobile" required>
+        </div>
+        <div>
+          <label for="coAltMobile">Alternate Mobile No</label>
+          <input type="tel" id="coAltMobile" name="coAltMobile">
+        </div>
+      </div>
+      <label for="coAddress">Address *</label>
+      <textarea id="coAddress" name="coAddress" rows="3" required></textarea>
+    </fieldset>
 
-      <button type="submit">Submit Direct Application</button>
-    </form>
-  </div>
+    <!-- Preferences -->
+    <fieldset>
+      <legend>Preferences</legend>
+      <div class="row">
+        <div>
+          <label for="unitPref">Unit Preference</label>
+          <select id="unitPref" name="unitPref">
+            <option value="">Select Unit Preference</option>
+            <option>Corner Facing</option>
+            <option>Park Facing</option>
+            <option>Main Road Facing</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="amount">Amount Paid</label>
+          <input type="number" id="amount" name="amount">
+        </div>
+        <div>
+          <label for="receipt">Transaction ID</label>
+          <input type="text" id="receipt" name="receipt">
+        </div>
+      </div>
+    </fieldset>
 
-  <!-- Validation Script -->
-  <script>
-    document.querySelector("form").addEventListener("submit", function(e) {
-      // Email Validation
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-      const email = document.getElementById("email").value.trim();
-      const coEmail = document.getElementById("coEmail").value.trim();
-      if (!emailPattern.test(email)) {
-        alert("Enter a valid Applicant Email.");
-        e.preventDefault();
-        return false;
-      }
-      if (!emailPattern.test(coEmail)) {
-        alert("Enter a valid Co-Applicant Email.");
-        e.preventDefault();
-        return false;
-      }
+    <!-- QR Code -->
+    <fieldset>
+      <legend>Payment QR</legend>
+      <p>Scan this QR code to make your payment:</p>
+      <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
+    </fieldset>
 
-      // Phone Validation
-      const phonePattern = /^[6-9]\d{9}$/;
-      const mobile = document.getElementById("mobile").value.trim();
-      const coMobile = document.getElementById("coMobile").value.trim();
-      const coAltMobile = document.getElementById("coAltMobile").value.trim();
+    <button type="submit">Submit Direct Application</button>
+  </form>
+</div>
 
-      if (!phonePattern.test(mobile)) {
-        alert("Applicant Mobile must be 10 digits starting with 6-9.");
-        e.preventDefault();
-        return false;
-      }
-      if (!phonePattern.test(coMobile)) {
-        alert("Co-Applicant Mobile must be 10 digits starting with 6-9.");
-        e.preventDefault();
-        return false;
-      }
-      if (coAltMobile && !phonePattern.test(coAltMobile)) {
-        alert("Alternate Mobile must be 10 digits starting with 6-9.");
-        e.preventDefault();
-        return false;
-      }
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  const applicantEmail = document.getElementById("applicantEmail").value.trim();
+  const coEmail = document.getElementById("coEmail").value.trim();
+  if(!emailPattern.test(applicantEmail)){ alert("Enter a valid Applicant Email."); e.preventDefault(); return false;}
+  if(!emailPattern.test(coEmail)){ alert("Enter a valid Co-Applicant Email."); e.preventDefault(); return false;}
 
-      // Aadhaar Validation
-      const aadhaar = document.getElementById("aadhaar").value.trim();
-      const coAadhaar = document.getElementById("coAadhaar").value.trim();
-      if (!/^\d{12}$/.test(aadhaar)) {
-        alert("Applicant Aadhaar must be 12 digits.");
-        e.preventDefault();
-        return false;
-      }
-      if (!/^\d{12}$/.test(coAadhaar)) {
-        alert("Co-Applicant Aadhaar must be 12 digits.");
-        e.preventDefault();
-        return false;
-      }
+  const phonePattern = /^[6-9]\d{9}$/;
+  const mobile = document.getElementById("mobile").value.trim();
+  const coMobile = document.getElementById("coMobile").value.trim();
+  const coAltMobile = document.getElementById("coAltMobile").value.trim();
+  if(!phonePattern.test(mobile)){ alert("Applicant Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
+  if(!phonePattern.test(coMobile)){ alert("Co-Applicant Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
+  if(coAltMobile && !phonePattern.test(coAltMobile)){ alert("Alternate Mobile must be 10 digits starting with 6-9."); e.preventDefault(); return false;}
 
-      // PAN Validation
-      const pan = document.getElementById("pan").value.trim();
-      const coPan = document.getElementById("coPan").value.trim();
-      if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
-        alert("Applicant PAN must be in format ABCDE1234F.");
-        e.preventDefault();
-        return false;
-      }
-      if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(coPan)) {
-        alert("Co-Applicant PAN must be in format ABCDE1234F.");
-        e.preventDefault();
-        return false;
-      }
-    });
-  </script>
+  const aadhaar = document.getElementById("aadhaar").value.trim();
+  const coAadhaar = document.getElementById("coAadhaar").value.trim();
+  if(!/^\d{12}$/.test(aadhaar)){ alert("Applicant Aadhaar must be 12 digits."); e.preventDefault(); return false;}
+  if(!/^\d{12}$/.test(coAadhaar)){ alert("Co-Applicant Aadhaar must be 12 digits."); e.preventDefault(); return false;}
+
+  const pan = document.getElementById("pan").value.trim();
+  const coPan = document.getElementById("coPan").value.trim();
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)){ alert("Applicant PAN must be in format ABCDE1234F."); e.preventDefault(); return false;}
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(coPan)){ alert("Co-Applicant PAN must be in format ABCDE1234F."); e.preventDefault(); return false;}
+});
+</script>
 </body>
 </html>
