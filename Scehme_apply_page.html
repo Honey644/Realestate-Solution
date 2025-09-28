@@ -1,406 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scheme Apply | SV Realty Solution</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
-    header {
-      background-color: #065c4c;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #065c4c;
-    }
-    form label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .row {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .row > div {
-      flex: 1;
-      min-width: 250px;
-    }
-    button {
-      background-color: #ffb400;
-      border: none;
-      padding: 12px 25px;
-      color: #000;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #e09e00;
-    }
-    fieldset {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 25px;
-    }
-    legend {
-      font-weight: bold;
-      color: #065c4c;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scheme Apply | SV Realty Solution</title>
+<style>
+  body {margin:0; font-family:Arial,sans-serif; background:#f8f9fa; color:#333;}
+  header {background:#065c4c; color:#fff; padding:15px; text-align:center;}
+  .container {max-width:1000px; margin:30px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+  h1 {text-align:center; margin-bottom:20px; color:#065c4c;}
+  form label {display:block; margin-top:10px; font-weight:bold;}
+  form input, form select, form textarea {width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;}
+  .row {display:flex; gap:40px; flex-wrap:wrap; margin-bottom:20px;}
+  .row > div {flex:1; min-width:250px;}
+  button {background-color:#ffb400; border:none; padding:12px 25px; color:#000; font-weight:bold; border-radius:5px; cursor:pointer; margin-top:20px;}
+  button:hover {background-color:#e09e00;}
+  button:disabled {background-color:#ccc; cursor:not-allowed;}
+  fieldset {border:1px solid #ddd; padding:20px; border-radius:8px; margin-top:30px; margin-bottom:30px;}
+  legend {font-weight:bold; color:#065c4c;}
+  .error {color:red; font-size:0.9em; margin-top:5px;}
+  @media (max-width: 600px) {
+    .row {flex-direction: column; gap:15px;}
+    .container {padding:20px; margin:15px;}
+    button {width:100%; padding:12px;}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h2>SV Realty Solution - Scheme Apply</h2>
-  </header>
+<header>
+  <h2>SV Realty Solution - Scheme Apply</h2>
+</header>
 
-  <div class="container">
-    <h1>Welcome to the Scheme Apply Form</h1>
-    <p>Start your subsidized scheme application process here.</p>
+<div class="container">
+  <h1>Scheme Application Form</h1>
+  <form id="schemeApplyForm" method="POST" data-netlify="true" name="scheme-apply" action="/thank-you.html">
+    <input type="hidden" name="form-name" value="scheme-apply">
 
-    <form name="scheme-apply" method="POST" data-netlify="true">
-      <!-- Scheme Details -->
-      <fieldset>
-        <legend>Scheme Details</legend>
-        <div class="row">
-          <div>
-            <label for="luckyDraw">Lucky Draw</label>
-            <select id="luckyDraw">
-              <option>Select</option>
-              <option>Tourism Development Plan</option>
-            </select>
-          </div>
-          <div>
-            <label for="scheme">Scheme</label>
-            <select id="scheme">
-              <option>Select</option>
-              <option>Tourism development Plan Khatu(Sikar, RJ) and LansDown(Uttrakhand)</option>
-            </select>
-          </div>
+    <!-- Scheme Details -->
+    <fieldset>
+      <legend>Scheme Details</legend>
+      <div class="row">
+        <div>
+          <label for="scheme">Scheme Name *</label>
+          <select id="scheme" name="scheme" required>
+            <option value="">Select</option>
+            <option>Tourism development Plan Khatu(Sikar, RJ) and LansDown(Uttrakhand)</option>
+          </select>
         </div>
-        <div class="row">
-          <div>
-            <label for="project">Project</label>
-            <select id="project">
-              <option>Select</option>
-              <option>Tourism development Plan Khatu(Sikar, RJ)</option>
-            </select>
-          </div>
-          <div>
-            <label for="unitType">Unit Type</label>
-            <select id="unitType">
-              <option>Select</option>
-              <option>Plot</option>
-              <option>Shop</option>
-              <option>Farmhouse</option>
-              <option>Villa</option>
-            </select>
-          </div>
-          <div>
-            <label for="plan">Plan</label>
-            <select id="plan">
-              <option>Select</option>
-              <option>Subsidized plan</option>
-            </select>
-          </div>
-          <div>
-            <label for="paymentPlan">Payment Plan</label>
-            <select id="paymentPlan">
-              <option>Select</option>
-              <option>PLP</option>
-              <option>DP</option>
-            </select>
-          </div>
+        <div>
+          <label for="project">Project *</label>
+          <select id="project" name="project" required>
+            <option value="">Select</option>
+            <option>SHRI JI VAN</option>
+            <option>KHATU ELEGENCE</option>
+          </select>
         </div>
-      </fieldset>
+      </div>
 
-      <!-- Applicant Details -->
-      <fieldset>
-        <legend>Applicant Details</legend>
-        <div class="row">
-          <div>
-            <label for="fullName">Full Name *</label>
-            <input type="text" id="fullName" required>
-          </div>
-          <div>
-            <label for="fatherName">S/o, D/o, W/o</label>
-            <input type="text" id="fullName" required>
-          </div>
+      <div class="row">
+        <div>
+          <label for="unitType">Unit Type *</label>
+          <select id="unitType" name="unitType" required>
+            <option value="">Select</option>
+            <option>Residential Plot</option>
+            <option>Commercial Plot</option>
+            <option>Farmhouse</option>
+            <option>Villa</option>
+          </select>
         </div>
-        <div class="row">
-          <div>
-            <label for="email">Email *</label>
-            <input type="email" id="email" required>
-          </div>
-          <div>
-            <label for="mobile">Mobile No *</label>
-            <input type="tel" id="mobile" required>
-          </div>
+        <div>
+          <label for="plan">Plan *</label>
+          <select id="plan" name="plan" required>
+            <option value="">Select</option>
+            <option>PLP</option>
+            <option>DP</option>
+          </select>
         </div>
-        <div class="row">
-          <div>
-            <label for="aadhaar">AADHAAR Number</label>
-            <input type="text" id="aadhaar">
-          </div>
-          <div>
-            <label for="pan">PAN Number</label>
-            <input type="text" id="pan">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="dob">Date of Birth *</label>
-            <input type="date" id="dob" required>
-          </div>
-          <div>
-            <label for="doa">Date of Anniversary</label>
-            <input type="date" id="doa">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="altMobile">Alternate Mobile No</label>
-            <input type="tel" id="altMobile">
-          </div>
-        </div>
-        <label for="address">Address *</label>
-        <textarea id="address" rows="3" required></textarea>
+      </div>
+    </fieldset>
 
-        <div class="row">
-          <div>
-            <label for="country">Country</label>
-            <select id="country">
-              <option>India</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="state">State</label>
-            <input type="text" id="state">
-          </div>
-          <div>
-            <label for="city">City</label>
-            <input type="text" id="city">
-          </div>
-          <div>
-            <label for="pin">Pin Code</label>
-            <input type="text" id="pin">
-          </div>
-          <div>
-            <label for="landmark">Landmark</label>
-            <input type="text" id="landmark">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="rm">Relationship Manager *</label>
-            <select id="rm">
-              <option>Select</option>
-              <option>Satyam</option>
-              <option>Uttkarsh</option>
-            </select>
-          </div>
-          <div>
-            <label for="sm">Supporting Manager</label>
-            <select id="sm">
-              <option>Select</option>
-              <option>Satyam</option>
-              <option>Uttkarsh</option>
-            </select>
-          </div>
-        </div>
-      </fieldset>
+    <!-- Applicant Details -->
+    <fieldset>
+      <legend>Applicant Details</legend>
+      <label for="fullName">Full Name *</label>
+      <input type="text" id="fullName" name="fullName" required>
 
-      <!-- Co-Applicant Details -->
-      <fieldset>
-        <legend>Co-Applicant Details</legend>
-        <div class="row">
-          <div>
-            <label for="coName">Full Name</label>
-            <input type="text" id="coName">
-          </div>
-          <div>
-            <label for="coEmail">Email</label>
-            <input type="email" id="coEmail">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="coPan">PAN Number</label>
-            <input type="text" id="coPan">
-          </div>
-          <div>
-            <label for="coAadhaar">AADHAAR Number</label>
-            <input type="text" id="coAadhaar">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="coDob">Date of Birth</label>
-            <input type="date" id="coDob">
-          </div>
-          <div>
-            <label for="coDoa">Date of Anniversary</label>
-            <input type="date" id="coDoa">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="coMobile">Mobile No</label>
-            <input type="tel" id="coMobile">
-          </div>
-          <div>
-            <label for="coAltMobile">Alternate Mobile No</label>
-            <input type="tel" id="coAltMobile">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="coCountry">Country</label>
-            <select id="coCountry">
-              <option>India</option>
-              <option>Other</option>
-            </select>
-          </div>
-			<div>
-			  <label for="coState">State</label>
-			  <select id="coState" name="coState">
-				<option value="">--Select State--</option>
-				<option value="andhra_pradesh">Andhra Pradesh</option>
-				<option value="arunachal_pradesh">Arunachal Pradesh</option>
-				<option value="assam">Assam</option>
-				<option value="bihar">Bihar</option>
-				<option value="chhattisgarh">Chhattisgarh</option>
-				<option value="goa">Goa</option>
-				<option value="gujarat">Gujarat</option>
-				<option value="haryana">Haryana</option>
-				<option value="himachal_pradesh">Himachal Pradesh</option>
-				<option value="jharkhand">Jharkhand</option>
-				<option value="karnataka">Karnataka</option>
-				<option value="kerala">Kerala</option>
-				<option value="madhya_pradesh">Madhya Pradesh</option>
-				<option value="maharashtra">Maharashtra</option>
-				<option value="manipur">Manipur</option>
-				<option value="meghalaya">Meghalaya</option>
-				<option value="mizoram">Mizoram</option>
-				<option value="nagaland">Nagaland</option>
-				<option value="odisha">Odisha</option>
-				<option value="punjab">Punjab</option>
-				<option value="rajasthan">Rajasthan</option>
-				<option value="sikkim">Sikkim</option>
-				<option value="tamil_nadu">Tamil Nadu</option>
-				<option value="telangana">Telangana</option>
-				<option value="tripura">Tripura</option>
-				<option value="uttar_pradesh">Uttar Pradesh</option>
-				<option value="uttarakhand">Uttarakhand</option>
-				<option value="west_bengal">West Bengal</option>
-				<option value="andaman_nicobar">Andaman and Nicobar Islands</option>
-				<option value="chandigarh">Chandigarh</option>
-				<option value="dadra_nagar_haveli_daman_diu">Dadra and Nagar Haveli and Daman and Diu</option>
-				<option value="delhi">Delhi</option>
-				<option value="jammu_kashmir">Jammu and Kashmir</option>
-				<option value="ladakh">Ladakh</option>
-				<option value="lakshadweep">Lakshadweep</option>
-				<option value="puducherry">Puducherry</option>
-			  </select>
-			</div>
+      <label for="fatherName">S/o, D/o, W/o *</label>
+      <input type="text" id="fatherName" name="fatherName" required>
 
-          <div>
-            <label for="coCity">City</label>
-            <input type="text" id="coCity">
-          </div>
-          <div>
-            <label for="coPin">Pin Code</label>
-            <input type="text" id="coPin">
-          </div>
+      <div class="row">
+        <div>
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+          <div id="emailError" class="error"></div>
         </div>
-        <label for="coAddress">Address</label>
-        <textarea id="coAddress" rows="3"></textarea>
-      </fieldset>
-
-      <!-- Preferences -->
-      <fieldset>
-        <legend>Preferences</legend>
-        <div class="row">
-          <div>
-            <label for="schemeName">Scheme Name:</label>
-            <input type="text" id="schemeName">
-          </div>
-          <div>
-            <label for="luckyDrawDate">Lucky Draw Date:</label>
-            <input type="date" id="luckyDrawDate">
-          </div>
+        <div>
+          <label for="mobile">Mobile No *</label>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" required>
+          <div id="mobileError" class="error"></div>
         </div>
-        <div class="row">
-          <div>
-            <label for="size">Size Type</label>
-            <select id="size">
-              <option>Select Size</option>
-            </select>
-          </div>
-          <div>
-            <label for="facing">Facing</label>
-            <select id="facing">
-              <option>Corner Facing</option>
-              <option>Park Facing</option>
-              <option>Main Road Facing</option>
-            </select>
-          </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="pan">PAN Number *</label>
+          <input type="text" id="pan" name="pan" maxlength="10" required>
+          <div id="panError" class="error"></div>
         </div>
-        <div class="row">
-          <div>
-            <label for="paymentMethod">Payment Method</label>
-            <select id="paymentMethod">
-              <option>Select Payment Method</option>
-            </select>
-          </div>
-          <div>
-            <label for="amount">Amount Received</label>
-            <input type="number" id="amount">
-          </div>
+        <div>
+          <label for="aadhaar">Aadhaar Number *</label>
+          <input type="text" id="aadhaar" name="aadhaar" maxlength="12" required>
+          <div id="aadhaarError" class="error"></div>
         </div>
-        <label for="remarks">Remarks</label>
-        <textarea id="remarks" rows="3"></textarea>
+      </div>
 
-        <label for="receipt">Payment Receipt</label>
-        <input type="file" id="receipt">
-      </fieldset>
+      <div class="row">
+        <div>
+          <label for="dob">Date of Birth *</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+        <div>
+          <label for="anniversary">Date of Anniversary</label>
+          <input type="date" id="anniversary" name="anniversary">
+        </div>
+      </div>
 
-      <fieldset>
-        <legend>Payment QR</legend>
-        <p>Scan this QR code to make your payment:</p>
-        <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
-      </fieldset>
+      <label for="address">Address *</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+    </fieldset>
 
-      <button type="submit">Submit Scheme Application</button>
-    </form>
-  </div>
+    <!-- Co-Applicant Details -->
+    <fieldset>
+      <legend>Co-Applicant Details (Optional)</legend>
+      <label for="coName">Full Name</label>
+      <input type="text" id="coName" name="coName">
+
+      <div class="row">
+        <div>
+          <label for="coEmail">Email</label>
+          <input type="email" id="coEmail" name="coEmail">
+          <div id="coEmailError" class="error"></div>
+        </div>
+        <div>
+          <label for="coMobile">Mobile No</label>
+          <input type="tel" id="coMobile" name="coMobile" maxlength="10">
+          <div id="coMobileError" class="error"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="coPan">PAN Number</label>
+          <input type="text" id="coPan" name="coPan" maxlength="10">
+          <div id="coPanError" class="error"></div>
+        </div>
+        <div>
+          <label for="coAadhaar">Aadhaar Number</label>
+          <input type="text" id="coAadhaar" name="coAadhaar" maxlength="12">
+          <div id="coAadhaarError" class="error"></div>
+        </div>
+      </div>
+
+      <label for="coAddress">Address</label>
+      <textarea id="coAddress" name="coAddress" rows="3"></textarea>
+    </fieldset>
+
+    <!-- Preferences -->
+    <fieldset>
+      <legend>Preferences</legend>
+      <div class="row">
+        <div>
+          <label for="schemePref">Scheme Name *</label>
+          <select id="schemePref" name="schemePref" required>
+            <option value="">Select</option>
+            <option>Tourism development Plan Khatu(Sikar, RJ) and LansDown(Uttrakhand)</option>
+          </select>
+        </div>
+        <div>
+          <label for="luckyDraw">Lucky Draw Date</label>
+          <input type="date" id="luckyDraw" name="luckyDraw">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="size">Size Type</label>
+          <select id="size" name="size">
+            <option value="">Select</option>
+            <option><100 Sq Yd</option>
+            <option>>100 Sq Yd</option>
+            <option>=100 Sq Yd</option>
+          </select>
+        </div>
+        <div>
+          <label for="facing">Facing</label>
+          <select id="facing" name="facing">
+            <option value="">Select</option>
+            <option>Corner Facing</option>
+            <option>Park Facing</option>
+            <option>Main Road</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod">
+            <option value="">Select</option>
+            <option>Cash</option>
+            <option>Bank Transfer</option>
+            <option>Cheque</option>
+            <option>UPI</option>
+          </select>
+        </div>
+        <div>
+          <label for="amount">Amount Paid</label>
+          <input type="number" id="amount" name="amount">
+        </div>
+      </div>
+
+      <label for="receipt">Transaction Id</label>
+      <input type="text" id="receipt" name="receipt">
+    </fieldset>
+
+    <!-- QR Code -->
+    <fieldset>
+      <legend>Payment QR</legend>
+      <p>Scan this QR code to make your payment:</p>
+      <img src="assets/qrcode.png" alt="Payment QR Code" width="200">
+    </fieldset>
+
+    <button type="submit" id="submitBtn" disabled>Submit Application</button>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById("schemeApplyForm");
+const submitBtn = document.getElementById("submitBtn");
+
+const validators = {
+  email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+  mobile: value => /^[6-9]\d{9}$/.test(value),
+  pan: value => /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/.test(value),
+  aadhaar: value => /^\d{12}$/.test(value)
+};
+
+function validateField(id,type,optional=false){
+  const value = document.getElementById(id).value.trim();
+  const errorDiv = document.getElementById(id+"Error");
+  if(!value && optional){ errorDiv.textContent=""; return true; }
+  if(!validators[type](value)){
+    errorDiv.textContent = type.toUpperCase() + " is invalid";
+    return false;
+  }
+  errorDiv.textContent = "";
+  return true;
+}
+
+function checkFormValidity(){
+  const requiredFields = ["scheme","project","unitType","plan","fullName","fatherName","email","mobile","pan","aadhaar","dob","address","schemePref"];
+  const allFilled = requiredFields.every(id=>document.getElementById(id).value.trim()!=="");
+
+  const emailValid = validateField("email","email");
+  const mobileValid = validateField("mobile","mobile");
+  const panValid = validateField("pan","pan");
+  const aadhaarValid = validateField("aadhaar","aadhaar");
+
+  const coEmailValid = document.getElementById("coEmail").value.trim()==="" || validateField("coEmail","email",true);
+  const coMobileValid = document.getElementById("coMobile").value.trim()==="" || validateField("coMobile","mobile",true);
+  const coPanValid = document.getElementById("coPan").value.trim()==="" || validateField("coPan","pan",true);
+  const coAadhaarValid = document.getElementById("coAadhaar").value.trim()==="" || validateField("coAadhaar","aadhaar",true);
+
+  submitBtn.disabled = !(allFilled && emailValid && mobileValid && panValid && aadhaarValid && coEmailValid && coMobileValid && coPanValid && coAadhaarValid);
+}
+
+// Real-time validation
+["email","mobile","pan","aadhaar","coEmail","coMobile","coPan","coAadhaar"].forEach(id=>{
+  const el = document.getElementById(id);
+  const type = id.includes("email")?"email":id.includes("mobile")?"mobile":id.includes("aadhaar")?"aadhaar":"pan";
+  el.addEventListener("input",()=>{
+    if(type==="mobile" || type==="aadhaar"){ 
+      const max = type==="mobile"?10:12;
+      if(el.value.length>max) el.value=el.value.slice(0,max);
+    }
+    validateField(id,type,id.startsWith("co"));
+    checkFormValidity();
+  });
+});
+
+// Reset form on successful submit
+form.addEventListener("submit", e=>{
+  checkFormValidity();
+  if(submitBtn.disabled){
+    e.preventDefault();
+    return;
+  }
+  setTimeout(()=>{
+    form.reset();
+    submitBtn.disabled = true;
+  },100);
+});
+
+form.addEventListener("input", checkFormValidity);
+</script>
 </body>
 </html>
