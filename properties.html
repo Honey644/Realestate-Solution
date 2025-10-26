@@ -1,17 +1,214 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Shri Ji Van • Properties</title><link rel='stylesheet' href='assets/styles.css'></head>
-<body><div class='navbar'><div class='row container'><div class='logo'>SV Realty Solutions</div><nav>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SV Realty Solutions • Properties</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: #fafafa;
+        color: #222;
+        margin: 0;
+      }
+      .navbar {
+        background: #222;
+        color: #fff;
+        padding: 1rem 0;
+      }
+      .navbar .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav a {
+        color: #fff;
+        margin-left: 15px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: #ffd369;
+      }
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 2rem;
+      }
+      h1 {
+        text-align: center;
+        color: #222;
+        margin-bottom: 1.5rem;
+      }
+      /* Filter Buttons */
+      .filter-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        border: none;
+        background: #2b6777;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 25px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #ffd369;
+        color: #222;
+      }
+
+      /* Project Cards */
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .project-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+      }
+      .project-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .project-info {
+        padding: 1.5rem;
+      }
+      .project-info h2 {
+        margin-top: 0;
+        color: #2b6777;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      .disclaimer {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 10px;
+      }
+      footer {
+        background: #222;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 3rem;
+      }
+      @media (max-width: 768px) {
+        .projects {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="row container">
+        <div class="logo">SV Realty Solutions</div>
+        <nav>
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="properties.html">Properties</a>
           <a href="services.html">Services</a>
           <a href="gallery.html">Gallery</a>
           <a href="contact.html">Contact</a>
-          <a href="ApplyPage_updated.html">Apply</a> <!-- ✅ New link -->
-        </nav></div></div>
-<main class='container'><h1>Project: Shri Ji Van</h1><div class='grid'>
-<div class='card'><h2>Highlights</h2><ul><li>Residential plots with future-ready amenities</li><li>Strategic location near major temples and transport</li><li>Guided site visits & transparent documentation</li></ul></div>
-<div class='card'><h2>Location</h2><ul><li>Near Khatu Shyam Temple (10 km)</li><li>Near Jeen Mata Temple</li><li>Near Manokamna Temple</li><li>Near Harsh Nath Temple</li><li>Khatu Shyam Police Station – 6 km</li><li>New Khatu Shyam Bus Stand – 7 km</li><li>Main highway: Jeen Mata Mandir → Khatu Shyam Temple</li></ul></div>
-<div class='card'><h2>Sample Plot</h2><img src='assets/gallery/plot1.jpg' alt='Plot photo' style='width:100%;border-radius:12px'></div></div>
-<div class='card'><h2>Road Map</h2><img src='assets/gallery/roadmap.jpg' alt='Road Map' style='width:100%;border-radius:12px'><p class='disclaimer'>Disclaimer: The content is for information purposes only and does not constitute an offer to avail of any service. Prices mentioned are subject to change without notice and properties mentioned are subject to availability. Images for representation purposes only.</p></div>
-</main><footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer></body></html>
+          <a href="ApplyPage_updated.html">Apply</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="container">
+      <h1>Our Projects</h1>
+
+      <!-- 🔘 Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="rajasthan">Rajasthan</button>
+        <button class="filter-btn" data-filter="uttarakhand">Uttarakhand</button>
+      </div>
+
+      <!-- 🏡 Project Cards -->
+      <div class="projects">
+
+        <!-- Project 1: Shri Ji Van -->
+        <div class="project-card" data-category="rajasthan">
+          <img src="assets/gallery/plot1.jpg" alt="Shri Ji Van Project">
+          <div class="project-info">
+            <h2>Shri Ji Van – Sikar, Rajasthan</h2>
+            <ul>
+              <li>Residential plots with future-ready amenities</li>
+              <li>Strategic location near major temples and transport</li>
+              <li>Guided site visits & transparent documentation</li>
+              <li>Located near Khatu Shyam Temple (10 km)</li>
+              <li>Main highway: Jeen Mata Mandir → Khatu Shyam Temple</li>
+            </ul>
+            <img src="assets/gallery/roadmap.jpg" alt="Road Map" style="width:100%;border-radius:8px;margin-top:10px;">
+            <p class="disclaimer">
+              Disclaimer: The content is for information purposes only. Prices and availability are subject to change without notice.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 2: Green Valley Lansdowne -->
+        <div class="project-card" data-category="uttarakhand">
+          <img src="assets/gallery/greenvalley.jpg" alt="Green Valley Lansdowne">
+          <div class="project-info">
+            <h2>Green Valley Lansdowne – Uttarakhand</h2>
+            <ul>
+              <li>Premium cottages and plots surrounded by lush greenery</li>
+              <li>Panoramic Himalayan view with year-round pleasant weather</li>
+              <li>Ideal for holiday homes and peaceful living</li>
+              <li>Just 10 km from Lansdowne market & 5 km from river point</li>
+              <li>Eco-friendly project with water harvesting & solar lighting</li>
+            </ul>
+            <img src="assets/gallery/lansdowne_map.jpg" alt="Green Valley Road Map" style="width:100%;border-radius:8px;margin-top:10px;">
+            <p class="disclaimer">
+              Disclaimer: Illustrative visuals only. Site conditions, price, and layout may vary at the time of booking.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
+
+    <script>
+      // 🧠 Filter Functionality
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Reset active state
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          const filter = button.getAttribute('data-filter');
+          
+          projectCards.forEach(card => {
+            card.style.display =
+              filter === 'all' || card.getAttribute('data-category') === filter
+                ? 'block'
+                : 'none';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
