@@ -1,156 +1,191 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gallery • SV Realty Solutions</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    body {
-      background: #f8f9fa;
-      font-family: "Poppins", sans-serif;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gallery • SV Realty Solutions</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  body {background: #f8f9fa; font-family: "Poppins", sans-serif;}
+  h1 {text-align: center; margin-top: 40px; font-size: 2rem; color: #333;}
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 40px 20px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    cursor: zoom-in;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .gallery-item:hover {transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.25);}
+  .gallery-item img, .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    transition: transform 0.5s ease;
+    transform-origin: center center;
+  }
+  .gallery-item:hover img, .gallery-item:hover video {transform: scale(1.15);}
+  .gallery-item span {
+    position: absolute; bottom: 10px; left: 10px;
+    background: rgba(0,0,0,0.6); color: #fff;
+    padding: 6px 12px; border-radius: 8px;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
+  }
+  footer {text-align: center; padding: 20px; background: #111; color: #fff; margin-top: 40px;}
 
-    h1 {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 2rem;
-      color: #333;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin: 40px 20px;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
-
-    .gallery-item img,
-    .gallery-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .gallery-item:hover img,
-    .gallery-item:hover video {
-      transform: scale(1.08);
-    }
-
-    .gallery-item span {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #fff;
-      margin-top: 40px;
-    }
-  </style>
+  /* Lightbox styles */
+  .lightbox {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); display: none;
+    justify-content: center; align-items: center; z-index: 9999;
+    flex-direction: column;
+  }
+  .lightbox-content {max-width: 90%; max-height: 80%; border-radius: 12px;}
+  .lightbox img, .lightbox video {width: 100%; height: auto; border-radius: 12px;}
+  .close-btn {
+    position: absolute; top: 20px; right: 30px;
+    color: white; font-size: 32px; cursor: pointer; font-weight: bold;
+  }
+  .nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    color: white; font-size: 40px; cursor: pointer; font-weight: bold;
+    padding: 10px 20px; user-select: none;
+  }
+  .prev-btn { left: 20px; }
+  .next-btn { right: 20px; }
+</style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="row container">
-      <div class="logo">SV Realty Solutions</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="properties.html">Properties</a>
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-        <a href="ApplyPage_updated.html">Apply</a>
-      </nav>
-    </div>
+<div class="navbar">
+  <div class="row container">
+    <div class="logo">SV Realty Solutions</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="properties.html">Properties</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="ApplyPage_updated.html">Apply</a>
+    </nav>
   </div>
+</div>
 
-  <main class="container">
-    <h1>Project Gallery</h1>
-    <div class="gallery" id="gallery"></div>
-  </main>
+<main class="container">
+  <h1>Project Gallery</h1>
+  <div class="gallery" id="gallery"></div>
+</main>
 
-  <footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close-btn" id="closeBtn">&times;</span>
+  <span class="nav-btn prev-btn" id="prevBtn">&#10094;</span>
+  <span class="nav-btn next-btn" id="nextBtn">&#10095;</span>
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
 
-  <script>
-    // 👇 Add your image and video file names here
-    const galleryFolder = 'assets/gallery/';
-    const videoFolder = 'assets/videos/';
+<footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
 
-    const mediaFiles = [
-      // Images
-        'khatu-shyam.jpg',
-        'plot1.jpg',
-        'roadmap.jpg',
-        'greenvalley.jpg',
-        'lansdowne_map.jpg',
-        'lansdowne1.jpg',
-      // Videos
-      'shri-ji-van-walkthrough.mp4',
-      'shri-ji-van-site.mp4',
-      'shri-ji-van-site-inspection.mp4',
-      'green-valley-tour.mp4',
-      'greenvalley-video.mp4',
-      'Lansdowne-villa.mp4',
-      'Lansdowne-Road.mp4',
-      'Lansdowne-Road1.mp4'
-    ];
+<script>
+  const gallery = document.getElementById("gallery");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxContent = document.getElementById("lightboxContent");
+  const closeBtn = document.getElementById("closeBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-    const gallery = document.getElementById('gallery');
+  const mediaFiles = [
+    "khatu-shyam.jpg","plot1.jpg","roadmap.jpg","greenvalley.jpg","lansdowne_map.jpg","lansdowne1.jpg",
+    "shri-ji-van-walkthrough.mp4","shri-ji-van-site.mp4","greenvalley-video.mp4","lansdowne-villa.mp4"
+  ];
 
-    mediaFiles.forEach(file => {
-      const item = document.createElement('div');
-      item.classList.add('gallery-item');
+  let currentIndex = 0;
 
-      const isVideo = file.endsWith('.mp4') || file.endsWith('.webm') || file.endsWith('.ogg');
-      const src = isVideo ? videoFolder + file : galleryFolder + file;
-      const title = file.split('.')[0].replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  mediaFiles.forEach((file,index)=>{
+    const item = document.createElement("div");
+    item.classList.add("gallery-item");
+    const isVideo = file.endsWith(".mp4");
+    const src = isVideo ? "assets/videos/"+file : "assets/gallery/"+file;
+    const title = file.split(".")[0].replace(/[-_]/g," ").replace(/\b\w/g,c=>c.toUpperCase());
 
-      if (isVideo) {
-        const video = document.createElement('video');
-        video.src = src;
-        video.controls = true;
-        item.appendChild(video);
-      } else {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = title;
-        item.appendChild(img);
-      }
+    if(isVideo){
+      const video = document.createElement("video");
+      video.src = src; video.controls = true;
+      item.appendChild(video);
+    } else {
+      const img = document.createElement("img");
+      img.src = src; img.alt = title;
+      item.appendChild(img);
+    }
 
-      const span = document.createElement('span');
-      span.textContent = title;
-      item.appendChild(span);
+    const span = document.createElement("span");
+    span.textContent = title;
+    item.appendChild(span);
 
-      gallery.appendChild(item);
+    // 🔹 Click opens lightbox
+    item.addEventListener("click",()=>{openLightbox(index);});
+
+    gallery.appendChild(item);
+  });
+
+  // Magnify cursor effect
+  const items = document.querySelectorAll('.gallery-item');
+  items.forEach(item => {
+    item.addEventListener('mousemove', e => {
+      const media = item.querySelector('img, video');
+      const rect = item.getBoundingClientRect();
+      const x = ((e.clientX - rect.left)/rect.width)*100;
+      const y = ((e.clientY - rect.top)/rect.height)*100;
+      media.style.transformOrigin = `${x}% ${y}%`;
     });
-  </script>
+    item.addEventListener('mouseleave', e => {
+      const media = item.querySelector('img, video');
+      media.style.transformOrigin = `center center`;
+    });
+  });
+
+  function openLightbox(index){
+    currentIndex = index;
+    showLightbox();
+    lightbox.style.display="flex";
+  }
+
+  function closeLightbox(){
+    lightbox.style.display="none";
+    lightboxContent.innerHTML="";
+  }
+
+  function showLightbox(){
+    lightboxContent.innerHTML="";
+    const file = mediaFiles[currentIndex];
+    const isVideo = file.endsWith(".mp4");
+    const src = isVideo ? "assets/videos/"+file : "assets/gallery/"+file;
+    if(isVideo){
+      const video = document.createElement("video");
+      video.src = src; video.controls = true; video.autoplay = true;
+      lightboxContent.appendChild(video);
+    } else {
+      const img = document.createElement("img");
+      img.src = src;
+      lightboxContent.appendChild(img);
+    }
+  }
+
+  closeBtn.addEventListener("click", closeLightbox);
+  nextBtn.addEventListener("click", ()=>{currentIndex=(currentIndex+1)%mediaFiles.length; showLightbox();});
+  prevBtn.addEventListener("click", ()=>{currentIndex=(currentIndex-1+mediaFiles.length)%mediaFiles.length; showLightbox();});
+
+  // Close on ESC
+  document.addEventListener("keydown",(e)=>{if(e.key==="Escape") closeLightbox();});
+</script>
 </body>
 </html>
