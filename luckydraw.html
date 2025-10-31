@@ -1,13 +1,253 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Lucky Draw • Shri Ji Van</title><link rel='stylesheet' href='assets/styles.css'><script defer src='assets/script.js'></script></head>
-<body class='auth'><div class='card' style='max-width:560px'><h2>Shri Ji Van – Lucky Draw</h2>
-<p class='small'>Enter your details and transaction ID to participate. (Login required)</p><div id='msg'></div>
-<form id='ldForm'><label>Full Name</label><input id='name' required><label>Email</label><input type='email' id='email' required>
-<label>Phone</label><input id='phone' required><label>Transaction ID</label><input id='transactionId' required><button class='cta' type='submit'>Submit Entry</button></form></div>
-<script>
-requireAuth(); document.getElementById('ldForm').addEventListener('submit', async (e)=>{
-e.preventDefault(); const body={name:name.value,email:email.value,phone:phone.value,transactionId:transactionId.value};
-const {res,data}=await api('/api/luckydraw/enter',{method:'POST',body:JSON.stringify(body)});
-if(res.ok){msg.className='msg';msg.textContent='Entry submitted successfully!'; e.target.reset();} else {msg.className='err';msg.textContent=data.msg||'Submission failed';}
-});
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucky Draw Entries | SHRI JI VAN</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #f5f9ff, #e8f0fe);
+      color: #333;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #1a73e8;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .table-container {
+      width: 95%;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a73e8;
+      color: white;
+      padding: 15px 20px;
+    }
+    .table-header h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .search-box {
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      padding: 6px;
+      font-size: 14px;
+      color: #333;
+      width: 160px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+    th {
+      background: #f5f8ff;
+      cursor: pointer;
+      color: #1a73e8;
+      user-select: none;
+    }
+    th:hover {
+      background: #e9f0ff;
+    }
+    tr:hover {
+      background: #f9fbff;
+      transition: background 0.2s ease;
+    }
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      th {
+        display: none;
+      }
+      tr {
+        margin-bottom: 12px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      td {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #1a73e8;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lucky Draw Entries</h1>
+
+  <div class="table-container">
+    <div class="table-header">
+      <h2>SHRI JI VAN - Tourism Development Plan Khatu (Sikar, RJ)</h2>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchTable()">
+      </div>
+    </div>
+
+    <table id="luckyDrawTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Scheme Name</th>
+          <th onclick="sortTable(1)">Project Name</th>
+          <th onclick="sortTable(2)">Full Name</th>
+          <th onclick="sortTable(3)">Father Name</th>
+          <th onclick="sortTable(4)">Aadhaar Number</th>
+          <th onclick="sortTable(5)">Plot No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Satya Prakash</td>
+          <td data-label="Father Name">Lal Singh</td>
+          <td data-label="Aadhaar Number">********5861</td>
+          <td data-label="Plot No">21</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Kishun Kumar</td>
+          <td data-label="Father Name">Kamta Prasad</td>
+          <td data-label="Aadhaar Number">********5719</td>
+          <td data-label="Plot No">9</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Satpal Singh</td>
+          <td data-label="Father Name">Jaipal Singh</td>
+          <td data-label="Aadhaar Number">********3381</td>
+          <td data-label="Plot No">1</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Naima Khatoon</td>
+          <td data-label="Father Name">Ramjan Khan</td>
+          <td data-label="Aadhaar Number">********3381</td>
+          <td data-label="Plot No">18</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Rahul Meena</td>
+          <td data-label="Father Name">Suresh Meena</td>
+          <td data-label="Aadhaar Number">********7588</td>
+          <td data-label="Plot No">2</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Ishu Thakur</td>
+          <td data-label="Father Name">Satya Prakash</td>
+          <td data-label="Aadhaar Number">********0833</td>
+          <td data-label="Plot No">6</td>
+        </tr>
+        <tr>
+          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
+          <td data-label="Project Name">SHRI JI VAN</td>
+          <td data-label="Full Name">Sanjay Kumar</td>
+          <td data-label="Father Name">Hari Charan Jindal</td>
+          <td data-label="Aadhaar Number">********0911</td>
+          <td data-label="Plot No">23</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Search functionality
+    function searchTable() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase();
+      const table = document.getElementById("luckyDrawTable");
+      const rows = table.getElementsByTagName("tr");
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        let found = false;
+        for (let j = 0; j < cells.length; j++) {
+          if (cells[j].innerText.toLowerCase().includes(filter)) {
+            found = true;
+            break;
+          }
+        }
+        rows[i].style.display = found ? "" : "none";
+      }
+    }
+
+    // Sort functionality
+    function sortTable(n) {
+      const table = document.getElementById("luckyDrawTable");
+      let switching = true, dir = "asc", switchcount = 0;
+      while (switching) {
+        switching = false;
+        const rows = table.rows;
+        for (let i = 1; i < rows.length - 1; i++) {
+          let shouldSwitch = false;
+          const x = rows[i].getElementsByTagName("TD")[n];
+          const y = rows[i + 1].getElementsByTagName("TD")[n];
+          if (dir === "asc" && x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          } else if (dir === "desc" && x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount++;
+        } else if (switchcount === 0 && dir === "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
