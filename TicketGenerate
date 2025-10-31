@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Generator</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-top: 1rem;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 0.3rem;
+    }
+
+    button {
+      background: #6a5acd;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #483d8b;
+    }
+
+    .ticket-info {
+      background: #f4f4ff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    .ticket-info p {
+      margin: 0.3rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Ticket Generator</h2>
+    <form name="ticketForm" method="POST" data-netlify="true" id="ticketForm">
+      <input type="hidden" name="form-name" value="ticketForm">
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="Name" required />
+
+      <label for="aadhaar">Aadhaar Card Number</label>
+      <input type="text" id="aadhaar" name="AadhaarNumber" pattern="[0-9]{12}" title="Enter 12-digit Aadhaar number" required />
+
+      <label for="pan">PAN Card Number</label>
+      <input type="text" id="pan" name="PANNumber" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter valid PAN format" required />
+
+      <label for="txn">Transaction ID</label>
+      <input type="text" id="txn" name="TransactionID" required />
+
+      <input type="hidden" id="ticketId" name="TicketID" />
+
+      <button type="button" onclick="generateTicket()">Generate Ticket</button>
+
+      <div class="ticket-info" id="ticketInfo">
+        <h3>🎟 Ticket Generated!</h3>
+        <p><strong>Ticket ID:</strong> <span id="ticketDisplay"></span></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function generateTicket() {
+      const name = document.getElementById('name').value.trim();
+      const aadhaar = document.getElementById('aadhaar').value.trim();
+      const pan = document.getElementById('pan').value.trim();
+      const txn = document.getElementById('txn').value.trim();
+
+      if (!name || !aadhaar || !pan || !txn) {
+        alert("Please fill all fields before generating the ticket!");
+        return;
+      }
+
+      // Generate unique Ticket ID
+      const ticketID = "TKT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).substr(2, 5).toUpperCase();
+
+      // Set the ticketID into hidden field
+      document.getElementById('ticketId').value = ticketID;
+      document.getElementById('ticketDisplay').innerText = ticketID;
+      document.getElementById('ticketInfo').style.display = "block";
+
+      // Submit the form to Netlify after short delay
+      setTimeout(() => {
+        document.getElementById('ticketForm').submit();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
