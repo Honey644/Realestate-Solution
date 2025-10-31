@@ -1,338 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucky Draw Entries | SHRI JI VAN</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lucky Draw | SV Realty Solutions</title>
+  <!-- Tailwind CDN (works fine for Netlify static site) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #f5f9ff, #e8f0fe);
-      color: #333;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* 🌟 Navbar Styling */
-    nav {
-      width: 100%;
-      background-color: #1a73e8;
-      padding: 14px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
-      letter-spacing: 0.5px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #d2e3fc;
-      text-decoration: underline;
-    }
-
-    h1 {
-      color: #1a73e8;
-      font-size: 2.2em;
-      margin: 40px 0 20px;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .table-container {
-      width: 95%;
-      max-width: 1200px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      margin-bottom: 40px;
-    }
-
-    .table-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1a73e8;
-      color: white;
-      padding: 15px 20px;
-    }
-
-    .table-header h2 {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-
-    .search-box {
-      background: white;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      padding: 5px 10px;
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      padding: 6px;
-      font-size: 14px;
-      color: #333;
-      width: 160px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 14px 18px;
-      border-bottom: 1px solid #eee;
-      font-size: 15px;
-    }
-
-    th {
-      background: #f5f8ff;
-      cursor: pointer;
-      color: #1a73e8;
-      user-select: none;
-    }
-
-    th:hover {
-      background: #e9f0ff;
-    }
-
-    tr:hover {
-      background: #f9fbff;
-      transition: background 0.2s ease;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      h1 {
-        font-size: 1.6em;
-        margin: 20px 0;
-      }
-
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      th {
-        display: none;
-      }
-
-      tr {
-        margin-bottom: 12px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-
-      td {
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        padding: 12px;
-      }
-
-      td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: #1a73e8;
-      }
-    }
+    /* small custom tweaks */
+    .logo-img { width: 48px; height: 48px; object-fit: contain; display:block; }
+    .logo-text { font-size: 1rem; font-weight: 700; color: #1e3a8a; display: none; }
+    /* show logo-text when image missing */
+    .logo-missing .logo-img { display: none; }
+    .logo-missing .logo-text { display: block; }
+    /* make table rows subtle */
+    .row-hover:hover { background-color: #f8fbff; transition: background .15s ease; }
   </style>
 </head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-white">
 
-<body>
-  <!-- 🌟 Navigation Bar -->
-  <nav>
-    <div class="logo">SHRI JI VAN</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="properties.html">Properties</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- NAVBAR (exact links you asked for) -->
+  <nav class="w-full bg-white shadow sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- logo area with fallback -->
+        <div id="logoWrap" class="flex items-center gap-3">
+          <img id="siteLogo" class="logo-img" src="logo.png" alt="SV Realty Solutions Logo"
+               onerror="document.getElementById('logoWrap').classList.add('logo-missing');" />
+          <span id="logoText" class="logo-text">SV REALTY SOLUTIONS</span>
+        </div>
 
-  <h1>Lucky Draw Entries</h1>
-
-  <div class="table-container">
-    <div class="table-header">
-      <h2>Tourism Development Plan Khatu (Sikar, RJ)</h2>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchTable()">
+        <!-- nav links (as provided) -->
+        <div>
+          <ul class="flex items-center gap-6 text-sm font-medium text-gray-700">
+            <li><a class="hover:text-blue-600" href="index.html">Home</a></li>
+            <li><a class="hover:text-blue-600" href="about.html">About</a></li>
+            <li><a class="hover:text-blue-600" href="properties.html">Properties</a></li>
+            <li><a class="hover:text-blue-600" href="services.html">Services</a></li>
+            <li><a class="hover:text-blue-600" href="gallery.html">Gallery</a></li>
+            <li><a class="hover:text-blue-600" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
       </div>
     </div>
+  </nav>
 
-    <table id="luckyDrawTable">
-      <thead>
-        <tr>
-          <th onclick="sortTable(0)">Scheme Name</th>
-          <th onclick="sortTable(1)">Project Name</th>
-          <th onclick="sortTable(2)">Full Name</th>
-          <th onclick="sortTable(3)">Father Name</th>
-          <th onclick="sortTable(4)">Aadhaar Number</th>
-          <th onclick="sortTable(5)">Plot No</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Satya Prakash</td>
-          <td data-label="Father Name">Lal Singh</td>
-          <td data-label="Aadhaar Number">********5861</td>
-          <td data-label="Plot No">21</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Kishun Kumar</td>
-          <td data-label="Father Name">Kamta Prasad</td>
-          <td data-label="Aadhaar Number">********5719</td>
-          <td data-label="Plot No">9</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Satpal Singh</td>
-          <td data-label="Father Name">Jaipal Singh</td>
-          <td data-label="Aadhaar Number">********3381</td>
-          <td data-label="Plot No">1</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Naima Khatoon</td>
-          <td data-label="Father Name">Ramjan Khan</td>
-          <td data-label="Aadhaar Number">********3381</td>
-          <td data-label="Plot No">18</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Rahul Meena</td>
-          <td data-label="Father Name">Suresh Meena</td>
-          <td data-label="Aadhaar Number">********7588</td>
-          <td data-label="Plot No">2</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Ishu Thakur</td>
-          <td data-label="Father Name">Satya Prakash</td>
-          <td data-label="Aadhaar Number">********0833</td>
-          <td data-label="Plot No">6</td>
-        </tr>
-        <tr>
-          <td data-label="Scheme Name">Tourism development Plan Khatu(Sikar, RJ)</td>
-          <td data-label="Project Name">SHRI JI VAN</td>
-          <td data-label="Full Name">Sanjay Kumar</td>
-          <td data-label="Father Name">Hari Charan Jindal</td>
-          <td data-label="Aadhaar Number">********0911</td>
-          <td data-label="Plot No">23</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- Page Header -->
+  <header class="w-full border-b border-gray-100 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <h1 class="text-2xl md:text-3xl font-semibold text-blue-800">Lucky Draw Entries</h1>
+      <p class="text-gray-600 mt-1">Tourism Development Plan Khatu (Sikar, RJ) — Project: SHRI JI VAN</p>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+
+      <!-- Controls -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="rounded-md bg-white shadow px-3 py-2 flex items-center">
+            <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7 7 0 1010 17a7 7 0 006.65-3.35z"/></svg>
+            <input id="searchInput" oninput="searchTable()" class="outline-none text-sm" placeholder="Search by name, aadhaar or plot..." />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="sortTable(2)" title="Sort by Full Name" class="px-3 py-2 bg-blue-600 text-white rounded shadow-sm text-sm hover:bg-blue-700">Sort Name</button>
+          <button onclick="sortTable(5)" title="Sort by Plot No" class="px-3 py-2 bg-gray-100 text-gray-800 rounded shadow-sm text-sm hover:bg-gray-200">Sort Plot</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-2xl shadow bg-white">
+        <table id="luckyDrawTable" class="min-w-full divide-y">
+          <thead class="bg-blue-600 text-white">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Scheme Name</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Project Name</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Full Name</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Father Name</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Aadhaar Number</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Plot No</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y text-sm text-gray-700">
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Satya Prakash</td>
+              <td class="px-6 py-4">Lal Singh</td>
+              <td class="px-6 py-4">********5861</td>
+              <td class="px-6 py-4">21</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Kishun Kumar</td>
+              <td class="px-6 py-4">Kamta Prasad</td>
+              <td class="px-6 py-4">********5719</td>
+              <td class="px-6 py-4">9</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Satpal Singh</td>
+              <td class="px-6 py-4">Jaipal Singh</td>
+              <td class="px-6 py-4">********3381</td>
+              <td class="px-6 py-4">1</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Naima Khatoon</td>
+              <td class="px-6 py-4">Ramjan Khan</td>
+              <td class="px-6 py-4">********3381</td>
+              <td class="px-6 py-4">18</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Rahul Meena</td>
+              <td class="px-6 py-4">Suresh Meena</td>
+              <td class="px-6 py-4">********7588</td>
+              <td class="px-6 py-4">2</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Ishu Thakur</td>
+              <td class="px-6 py-4">Satya Prakash</td>
+              <td class="px-6 py-4">********0833</td>
+              <td class="px-6 py-4">6</td>
+            </tr>
+            <tr class="row-hover">
+              <td class="px-6 py-4">Tourism development Plan Khatu(Sikar, RJ)</td>
+              <td class="px-6 py-4">SHRI JI VAN</td>
+              <td class="px-6 py-4">Sanjay Kumar</td>
+              <td class="px-6 py-4">Hari Charan Jindal</td>
+              <td class="px-6 py-4">********0911</td>
+              <td class="px-6 py-4">23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-8">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-600">
+      © 2025 SV Realty Solutions | All rights reserved
+    </div>
+  </footer>
 
   <script>
-    // 🔍 Search Functionality
+    // Search by name / aadhaar / plot
     function searchTable() {
-      const input = document.getElementById("searchInput");
-      const filter = input.value.toLowerCase();
-      const table = document.getElementById("luckyDrawTable");
-      const rows = table.getElementsByTagName("tr");
-      for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName("td");
-        let found = false;
-        for (let j = 0; j < cells.length; j++) {
-          if (cells[j].innerText.toLowerCase().includes(filter)) {
-            found = true;
-            break;
-          }
-        }
-        rows[i].style.display = found ? "" : "none";
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const table = document.getElementById('luckyDrawTable');
+      const trs = table.tBodies[0].rows;
+      for (let r of trs) {
+        const cellsText = Array.from(r.cells).map(c => c.textContent.toLowerCase()).join(' ');
+        r.style.display = cellsText.includes(q) ? '' : 'none';
       }
     }
 
-    // 🔄 Sort Functionality
-    function sortTable(n) {
-      const table = document.getElementById("luckyDrawTable");
-      let switching = true, dir = "asc", switchcount = 0;
-      while (switching) {
-        switching = false;
-        const rows = table.rows;
-        for (let i = 1; i < rows.length - 1; i++) {
-          let shouldSwitch = false;
-          const x = rows[i].getElementsByTagName("TD")[n];
-          const y = rows[i + 1].getElementsByTagName("TD")[n];
-          if (dir === "asc" && x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          } else if (dir === "desc" && x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-        if (shouldSwitch) {
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          switchcount++;
-        } else if (switchcount === 0 && dir === "asc") {
-          dir = "desc";
-          switching = true;
-        }
-      }
+    // Simple sort (column index)
+    function sortTable(colIndex) {
+      const tbody = document.getElementById('luckyDrawTable').tBodies[0];
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const asc = tbody.getAttribute('data-sort-dir') !== 'asc';
+      rows.sort((a,b) => {
+        const A = a.cells[colIndex].textContent.trim().toLowerCase();
+        const B = b.cells[colIndex].textContent.trim().toLowerCase();
+        // numeric compare for plot no
+        if (colIndex === 5) return asc ? (parseInt(A)||0) - (parseInt(B)||0) : (parseInt(B)||0) - (parseInt(A)||0);
+        return asc ? A.localeCompare(B) : B.localeCompare(A);
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      tbody.setAttribute('data-sort-dir', asc ? 'asc' : 'desc');
     }
   </script>
 </body>
