@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -184,5 +184,100 @@
       tbody.setAttribute('data-sort-dir', asc ? 'asc' : 'desc');
     }
   </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lucky Draw | SV Realty Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    .logo-img { width: 48px; height: 48px; object-fit: contain; display:block; }
+    .logo-text { font-size: 1rem; font-weight: 700; color: #1e3a8a; display: none; }
+    .logo-missing .logo-img { display: none; }
+    .logo-missing .logo-text { display: block; }
+
+    /* shimmer animation */
+    .shimmer {
+      background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+      background-size: 200% 100%;
+      animation: shimmerMove 2.5s infinite linear;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes shimmerMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-white">
+
+  <!-- NAVBAR -->
+  <nav class="w-full bg-white shadow sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <div id="logoWrap" class="flex items-center gap-3">
+          <img id="siteLogo" class="logo-img" src="logo.png" alt="SV Realty Solutions Logo"
+               onerror="document.getElementById('logoWrap').classList.add('logo-missing');" />
+          <span id="logoText" class="logo-text">SV REALTY SOLUTIONS</span>
+        </div>
+        <div>
+          <ul class="flex items-center gap-6 text-sm font-medium text-gray-700">
+            <li><a class="hover:text-blue-600" href="index.html">Home</a></li>
+            <li><a class="hover:text-blue-600" href="about.html">About</a></li>
+            <li><a class="hover:text-blue-600" href="properties.html">Properties</a></li>
+            <li><a class="hover:text-blue-600" href="services.html">Services</a></li>
+            <li><a class="hover:text-blue-600" href="gallery.html">Gallery</a></li>
+            <li><a class="hover:text-blue-600" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="w-full border-b border-gray-100 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <h1 class="text-2xl md:text-3xl font-semibold text-blue-800">Lucky Draw Entries</h1>
+      <p class="text-gray-600 mt-1">Tourism Development Plan Khatu (Sikar, RJ) — Project: SHRI JI VAN</p>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow">
+    <div class="max-w-6xl mx-auto px-6 py-28 flex flex-col items-center justify-center text-center">
+      <h2 class="text-4xl font-extrabold shimmer mb-4 animate-pulse">🎟️ Lucky Draw Coming Soon!</h2>
+      <p class="text-gray-700 text-lg">All previous entries are temporarily closed.<br>
+      Please stay tuned — the next draw will be announced shortly.</p>
+    </div>
+
+    <!-- 
+    ================================
+    PREVIOUS DRAW ENTRIES (COMMENTED OUT)
+    ================================
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <div class="overflow-x-auto rounded-2xl shadow bg-white">
+        <table id="luckyDrawTable" class="min-w-full divide-y">
+          ...
+        </table>
+      </div>
+    </div>
+    -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-8">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-600">
+      © 2025 SV Realty Solutions | All rights reserved
+    </div>
+  </footer>
+
 </body>
 </html>
