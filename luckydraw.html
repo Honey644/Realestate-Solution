@@ -1,92 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lucky Draw | SV Realty Solutions</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
-    .logo-img { width: 48px; height: 48px; object-fit: contain; display:block; }
-    .logo-text { font-size: 1rem; font-weight: 700; color: #1e3a8a; display: none; }
-    .logo-missing .logo-img { display: none; }
-    .logo-missing .logo-text { display: block; }
-
-    /* shimmer animation */
-    .shimmer {
-      background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
-      background-size: 200% 100%;
-      animation: shimmerMove 2.5s infinite linear;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    body {
+      background: linear-gradient(135deg, #eef2f3, #ffffff);
+      font-family: "Poppins", sans-serif;
     }
-
-    @keyframes shimmerMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      display: block;
+    }
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-white">
+<body class="min-h-screen flex flex-col">
 
-  <!-- NAVBAR -->
-  <nav class="w-full bg-white shadow sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <div id="logoWrap" class="flex items-center gap-3">
-          <img id="siteLogo" class="logo-img" src="logo.png" alt="SV Realty Solutions Logo"
-               onerror="document.getElementById('logoWrap').classList.add('logo-missing');" />
-          <span id="logoText" class="logo-text">SV REALTY SOLUTIONS</span>
-        </div>
-        <div>
-          <ul class="flex items-center gap-6 text-sm font-medium text-gray-700">
-            <li><a class="hover:text-blue-600" href="index.html">Home</a></li>
-            <li><a class="hover:text-blue-600" href="about.html">About</a></li>
-            <li><a class="hover:text-blue-600" href="properties.html">Properties</a></li>
-            <li><a class="hover:text-blue-600" href="services.html">Services</a></li>
-            <li><a class="hover:text-blue-600" href="gallery.html">Gallery</a></li>
-            <li><a class="hover:text-blue-600" href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <!-- Navbar -->
+  <nav class="bg-blue-600 shadow-lg text-white p-4 flex justify-between items-center">
+    <div class="logo-wrapper">
+      <img id="logo" src="logo.png" alt="SV Realty Solutions Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';" />
+      <span id="logo-text" class="logo-text hidden">SV REALTY SOLUTIONS</span>
+    </div>
+    <div class="flex gap-4">
+      <a href="index.html" class="hover:text-yellow-300 font-semibold">Home</a>
+      <a href="#" class="text-yellow-300 font-semibold">Lucky Draw</a>
     </div>
   </nav>
 
   <!-- Page Header -->
-  <header class="w-full border-b border-gray-100 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-8">
-      <h1 class="text-2xl md:text-3xl font-semibold text-blue-800">Lucky Draw Entries</h1>
-      <p class="text-gray-600 mt-1">Tourism Development Plan Khatu (Sikar, RJ) — Project: SHRI JI VAN</p>
-    </div>
+  <header class="text-center py-10 bg-blue-50 border-b border-gray-200">
+    <h1 class="text-4xl font-bold text-blue-700 mb-2">Lucky Draw Entries</h1>
+    <p class="text-gray-600">Tourism Development Plan Khatu (Sikar, RJ) — Project SHRI JI VAN</p>
   </header>
 
-  <!-- Main -->
-  <main class="flex-grow">
-    <div class="max-w-6xl mx-auto px-6 py-28 flex flex-col items-center justify-center text-center">
-      <h2 class="text-4xl font-extrabold shimmer mb-4 animate-pulse">🎟️ Lucky Draw Coming Soon!</h2>
-      <p class="text-gray-700 text-lg">All previous entries are temporarily closed.<br>
-      Please stay tuned — the next draw will be announced shortly.</p>
+  <!-- Lucky Draw Table -->
+  <main class="flex-grow container mx-auto px-6 py-10">
+    <div class="overflow-x-auto shadow-2xl rounded-2xl">
+      <table class="min-w-full bg-white border border-gray-200">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th class="py-3 px-5 text-left">Scheme Name</th>
+            <th class="py-3 px-5 text-left">Project Name</th>
+            <th class="py-3 px-5 text-left">Full Name</th>
+            <th class="py-3 px-5 text-left">Father Name</th>
+            <th class="py-3 px-5 text-left">Aadhaar Number</th>
+            <th class="py-3 px-5 text-left">Plot No</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 divide-y divide-gray-100">
+          <tr class="hover:bg-blue-50">
+            <td class="py-3 px-5">Tourism development Plan Khatu (Sikar, RJ)</td>
+            <td class="py-3 px-5">SHRI JI VAN</td>
+            <td class="py-3 px-5">Satya Prakash</td>
+            <td class="py-3 px-5">Lal Singh</td>
+            <td class="py-3 px-5">********5861</td>
+            <td class="py-3 px-5">21</td>
+          </tr>
+          <tr class="hover:bg-blue-50">
+            <td class="py-3 px-5">Tourism development Plan Khatu (Sikar, RJ)</td>
+            <td class="py-3 px-5">SHRI JI VAN</td>
+            <td class="py-3 px-5">Naima Khatoon</td>
+            <td class="py-3 px-5">Ramjan Khan</td>
+            <td class="py-3 px-5">********3381</td>
+            <td class="py-3 px-5">4</td>
+          </tr>
+          <tr class="hover:bg-blue-50">
+            <td class="py-3 px-5">Tourism development Plan Khatu (Sikar, RJ)</td>
+            <td class="py-3 px-5">SHRI JI VAN</td>
+            <td class="py-3 px-5">Satpal Singh</td>
+            <td class="py-3 px-5">Jaipal Singh</td>
+            <td class="py-3 px-5">********3381</td>
+            <td class="py-3 px-5">1</td>
+          </tr>
+          <tr class="hover:bg-blue-50">
+            <td class="py-3 px-5">Tourism development Plan Khatu (Sikar, RJ)</td>
+            <td class="py-3 px-5">SHRI JI VAN</td>
+            <td class="py-3 px-5">Rahul Meena</td>
+            <td class="py-3 px-5">Suresh Meena</td>
+            <td class="py-3 px-5">********7588</td>
+            <td class="py-3 px-5">2</td>
+          </tr>
+          <tr class="hover:bg-blue-50">
+            <td class="py-3 px-5">Tourism development Plan Khatu (Sikar, RJ)</td>
+            <td class="py-3 px-5">SHRI JI VAN</td>
+            <td class="py-3 px-5">Sanjay Kumar</td>
+            <td class="py-3 px-5">Hari Charan Jindal</td>
+            <td class="py-3 px-5">********0911</td>
+            <td class="py-3 px-5">23</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <!-- 
-    ================================
-    PREVIOUS DRAW ENTRIES (COMMENTED OUT)
-    ================================
-
-    <div class="max-w-6xl mx-auto px-6 py-8">
-      <div class="overflow-x-auto rounded-2xl shadow bg-white">
-        <table id="luckyDrawTable" class="min-w-full divide-y">
-          ...
-        </table>
-      </div>
-    </div>
-    -->
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t mt-8">
-    <div class="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-600">
-      © 2025 SV Realty Solutions | All rights reserved
-    </div>
+  <footer class="bg-blue-600 text-white text-center py-4 mt-auto">
+    <p>© 2025 SV Realty Solutions | All Rights Reserved</p>
   </footer>
 
 </body>
