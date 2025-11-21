@@ -1,101 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucky Draw | SV Realty Solutions</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SV Realty Solutions Pvt. Ltd.</title>
   <style>
-    body {
-      background: linear-gradient(135deg, #eef2f3, #ffffff);
-      font-family: "Poppins", sans-serif;
-    }
-    .logo-img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      display: block;
-    }
-    .logo-text {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #2563eb;
-    }
-    .logo-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    /* Reset and Base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
     }
 
-    .bounce {
-      animation: bounce 1.5s infinite;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+
+    /* Navbar */
+    .navbar {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f8c12d;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Side Drawer */
+    #nav-menu {
+      display: flex;
+    }
+
+    /* Overlay (hidden by default) */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      z-index: 1500;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      #nav-menu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        height: 100%;
+        width: 250px;
+        background: #1a1a1a;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+        z-index: 2000;
+      }
+
+      #nav-menu a {
+        color: #fff;
+        padding: 1rem 0;
+        border-bottom: 1px solid #333;
+      }
+
+      #nav-menu.active {
+        right: 0;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+    }
+
+    /* Hero Banner */
+    .hero {
+      position: relative;
+      background: url("assets/realestate-banner.jpg") no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hero .content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p.small {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta {
+      display: inline-block;
+      background: #f8c12d;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #000;
+      transition: background 0.3s;
+    }
+
+    .cta:hover {
+      background: #e5aa15;
+    }
+
+    /* Cards Section */
+    .container-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      background: #1a1a1a;
+      color: #fff;
+      margin-top: 2rem;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-
+<body>
   <!-- Navbar -->
-  <nav class="bg-blue-600 shadow-lg text-white p-4 flex justify-between items-center">
-    <div class="logo-wrapper">
-      <img id="logo" src="logo.png" alt="SV Realty Solutions Logo" class="logo-img" 
-           onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';" />
-      <span id="logo-text" class="logo-text hidden">SV REALTY SOLUTIONS</span>
+  <div class="navbar">
+    <div class="container">
+      <div class="logo">SV Realty Solutions</div>
+      <button class="hamburger" id="hamburger">☰</button>
+     <!-- inside index.html navbar -->
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="properties.html">Properties</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+          <a href="ApplyPage_updated.html">Apply</a> <!-- ✅ New link -->
+          <a href="luckydraw.html">Lucky Draw</a>
+        </nav>
+
     </div>
-    <div class="flex gap-4">
-      <a href="index.html" class="hover:text-yellow-300 font-semibold">Home</a>
-      <a href="#" class="text-yellow-300 font-semibold">Lucky Draw</a>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="content">
+      <h1>Shri Ji Van – Premium Plots near Khatu Shyam Ji</h1>
+      <p class="small">Trusted real estate guidance for families & investors. Book a visit today.</p>
+      <a class="cta" href="properties.html">Explore Project</a>
     </div>
-  </nav>
+  </section>
 
-  <!-- Page Header -->
-  <header class="text-center py-10 bg-blue-50 border-b border-gray-200">
-    <h1 class="text-4xl font-bold text-blue-700 mb-2">Lucky Draw</h1>
-    <p class="text-gray-600">Tourism Development Plan Khatu (Sikar, RJ) — Project SHRI JI VAN</p>
-  </header>
-
-  
-  <!-- ========================================= -->
-  <!-- ❌ COMMENTED OLD LUCKY DRAW TABLE          -->
-  <!-- ========================================= -->
-  <!--
-  <main class="flex-grow container mx-auto px-6 py-10">
-    <div class="overflow-x-auto shadow-2xl rounded-2xl">
-      <table class="min-w-full bg-white border border-gray-200">
-        ... (entire table commented)
-      </table>
+  <!-- Cards Section -->
+  <section class="container-section">
+    <div class="grid">
+      <div class="card">
+        <h2>About Us</h2>
+        <p>SV REALTY SOLUTIONS PVT. LTD. was established in 2025 and deals in all types of real estate projects with a customer-centric approach.</p>
+        <a class="cta" href="about.html">Read More</a>
+      </div>
+      <div class="card">
+        <h2>Location Highlights</h2>
+        <ul>
+          <li>Near Khatu Shyam Temple (10 km)</li>
+          <li>Near Jeen Mata Temple</li>
+          <li>Near Manokamna Temple</li>
+          <li>Near Harsh Nath Temple</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Get Started</h2>
+        <p>Login to join our Lucky Draw for early-bird benefits in <strong>Shri Ji Van</strong>.</p>
+        <a class="cta" href="login.html">Login</a>
+      </div>
     </div>
-  </main>
-  -->
-
-
-  <!-- ========================================= -->
-  <!-- ⭐ NEW INTERACTIVE GOODBYE / WAIT MESSAGE -->
-  <!-- ========================================= -->
-  <main class="flex-grow flex items-center justify-center px-6 py-20">
-    <div class="text-center bg-white shadow-2xl p-10 rounded-3xl max-w-lg border border-gray-200 hover:shadow-blue-300 transition duration-300">
-      <div class="text-6xl mb-4 bounce">🎉</div>
-      <h2 class="text-3xl font-bold text-blue-700 mb-3">Hope to see you again!</h2>
-      <p class="text-gray-600 text-lg mb-4">
-        The Lucky Draw entries are currently closed.
-      </p>
-      <p class="text-gray-800 font-semibold">
-        Stay tuned for the next draw — more surprises are on the way!
-      </p>
-      <button class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
-        Notify Me Next Time
-      </button>
-    </div>
-  </main>
-
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-4 mt-auto">
-    <p>© 2025 SV Realty Solutions | All Rights Reserved</p>
+  <footer>
+    © 2025 SV Realty Solutions Pvt. Ltd.
   </footer>
 
+  <!-- JavaScript -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    const overlay = document.getElementById("overlay");
+    const navLinks = navMenu.querySelectorAll("a");
+
+    // Toggle menu
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    // Close on overlay click
+    overlay.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+    // Close when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    });
+  </script>
 </body>
 </html>
