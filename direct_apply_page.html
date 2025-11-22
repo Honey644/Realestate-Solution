@@ -95,19 +95,61 @@ legend{font-weight:bold;color:#065c4c;}
 </fieldset>
 
 <!-- Preferences -->
+<!-- Preferences -->
 <fieldset><legend>Preferences</legend>
+
 <div class="row"><div>
-<label for="unitPref">Unit Preference *</label>
-<select id="unitPref" name="unitPref" required>
+<label for="unitPref">Preference </label>
+<select id="unitPref" name="unitPref" >
 <option value="">Select Unit Preference</option>
 <option>Corner Facing</option>
 <option>Park Facing</option>
 <option>Main Road Facing</option>
-</select></div></div>
-<div class="row"><div>
-<label for="amount">Amount Paid</label><input type="number" id="amount" name="amount"></div>
-<div><label for="receipt">Transaction ID</label><input type="text" id="receipt" name="receipt"></div></div>
+</select>
+</div></div>
+
+<!-- ADVISOR DROPDOWN GROUPED -->
+<div class="row">
+  <div>
+    <label for="advisor">Advisor Name *</label>
+    <select id="advisor" name="advisor" required>
+      <option value="">Select Advisor</option>
+
+      <optgroup label="Senior Managers">
+        <option>Shubham Singh (Senior Manager)</option>
+        <option>Yatharth Saxena (Senior Manager)</option>
+      </optgroup>
+
+      <optgroup label="Managers">
+        <option>Ashwani Sharma (Manager)</option>
+        <option>Satya Upadhyay (Manager)</option>
+        <option>Ishu Thakur (Manager)</option>
+      </optgroup>
+
+      <optgroup label="Assistant Managers">
+        <option>Uttkarsh Mittal (Asst Manager)</option>
+        <option>Pranav Sharma (Asst Manager)</option>
+        <option>Vinit Thakur (Asst Manager)</option>
+      </optgroup>
+
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+    <label for="amount">Amount Paid</label>
+    <input type="number" id="amount" name="amount">
+  </div>
+
+  <div>
+    <label for="receipt">Transaction ID</label>
+    <input type="text" id="receipt" name="receipt">
+  </div>
+</div>
+
 </fieldset>
+
 
 <!-- QR Code -->
 <fieldset><legend>Payment QR</legend>
