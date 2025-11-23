@@ -1,194 +1,353 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Gallery • SV Realty Solutions</title>
 <link rel="stylesheet" href="assets/styles.css">
-<style>
-  body {background: #f8f9fa; font-family: "Poppins", sans-serif;}
-  h1 {text-align: center; margin-top: 40px; font-size: 2rem; color: #333;}
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin: 40px 20px;
-  }
-  .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-    cursor: zoom-in;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  .gallery-item:hover {transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.25);}
-  .gallery-item img, .gallery-item video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    display: block;
-    transition: transform 0.5s ease;
-    transform-origin: center center;
-  }
-  .gallery-item:hover img, .gallery-item:hover video {transform: scale(1.15);}
-  .gallery-item span {
-    position: absolute; bottom: 10px; left: 10px;
-    background: rgba(0,0,0,0.6); color: #fff;
-    padding: 6px 12px; border-radius: 8px;
-    font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
-  }
-  footer {text-align: center; padding: 20px; background: #111; color: #fff; margin-top: 40px;}
 
-  /* Lightbox styles */
-  .lightbox {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); display: none;
-    justify-content: center; align-items: center; z-index: 9999;
-    flex-direction: column;
+<style>
+  :root{
+    --bg:#f8f9fa; --card:#fff; --muted:#7b8794;
   }
-  .lightbox-content {max-width: 90%; max-height: 80%; border-radius: 12px;}
-  .lightbox img, .lightbox video {width: 100%; height: auto; border-radius: 12px;}
-  .close-btn {
-    position: absolute; top: 20px; right: 30px;
-    color: white; font-size: 32px; cursor: pointer; font-weight: bold;
+  body{background:var(--bg);font-family:"Poppins",sans-serif;margin:0;color:#222;}
+  .container{max-width:1100px;margin:0 auto;padding:20px;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .logo{font-weight:700;color:#065c4c;}
+  nav a{margin-left:14px;text-decoration:none;color:var(--muted);font-size:14px;}
+  h1{text-align:center;margin:8px 0 18px;font-size:1.9rem;color:#222;}
+
+  /* Filters */
+  .filters{display:flex;gap:12px;justify-content:center;margin-bottom:18px;}
+  .filter-btn{background:#fff;border:1px solid #e6e9ec;padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:0 2px 6px rgba(11,24,32,0.03);}
+  .filter-btn.active{background:#065c4c;color:#fff;border-color:#065c4c;}
+
+  /* Grid */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:40px;}
+  .card{position:relative;border-radius:12px;overflow:hidden;background:var(--card);box-shadow:0 6px 18px rgba(9,12,15,0.06);min-height:180px;display:flex;align-items:center;justify-content:center;}
+  .label{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 10px;border-radius:8px;font-weight:600;font-size:13px;}
+
+  /* media style */
+  .card img,.card video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;transform-origin:center center;}
+  .card:hover img,.card:hover video{transform:scale(1.08);}
+
+  /* skeleton */
+  .skeleton{width:100%;height:100%;background:linear-gradient(90deg,#f0f0f0 10%,#e6e6e6 20%,#f0f0f0 30%);background-size:200% 100%;animation:shimmer 1.2s linear infinite;border-radius:12px}
+  @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:9999;padding:24px}
+  .lightbox.show{display:flex}
+  .lightbox-body{max-width:1100px;max-height:85vh;width:100%;position:relative}
+  .lightbox img,.lightbox video{width:100%;height:100%;object-fit:contain;border-radius:8px}
+  .close-btn{position:absolute;right:10px;top:6px;font-size:30px;color:#fff;cursor:pointer}
+  .nav-btn{position:absolute;top:50%;transform:translateY(-50%);font-size:36px;color:#fff;cursor:pointer;padding:12px}
+  .prev-btn{left:-60px} .next-btn{right:-60px}
+
+  /* responsive tweaks */
+  @media (max-width:700px){
+    .prev-btn{left:6px} .next-btn{right:6px}
   }
-  .nav-btn {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    color: white; font-size: 40px; cursor: pointer; font-weight: bold;
-    padding: 10px 20px; user-select: none;
-  }
-  .prev-btn { left: 20px; }
-  .next-btn { right: 20px; }
+
+  footer{text-align:center;padding:18px;background:#0b0b0b;color:#fff;margin-top:30px;}
 </style>
 </head>
 <body>
-<div class="navbar">
-  <div class="row container">
-    <div class="logo">SV Realty Solutions</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="properties.html">Properties</a>
-      <a href="services.html">Services</a>
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="contact.html">Contact</a>
-      <a href="ApplyPage_updated.html">Apply</a>
-      <a href="luckydraw.html">Lucky Draw</a>
-    </nav>
+  <div class="container">
+    <header>
+      <div class="logo">SV Realty Solutions</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html" style="color:#065c4c;font-weight:600">Gallery</a>
+      </nav>
+    </header>
+
+    <h1>Project Gallery</h1>
+
+    <!-- Filters -->
+    <div class="filters" role="toolbar" aria-label="Gallery filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="images">Images</button>
+      <button class="filter-btn" data-filter="videos">Videos</button>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery" id="gallery" aria-live="polite"></div>
+
+    <footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
   </div>
-</div>
 
-<main class="container">
-  <h1>Project Gallery</h1>
-  <div class="gallery" id="gallery"></div>
-</main>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close-btn" id="closeBtn">&times;</span>
-  <span class="nav-btn prev-btn" id="prevBtn">&#10094;</span>
-  <span class="nav-btn next-btn" id="nextBtn">&#10095;</span>
-  <div class="lightbox-content" id="lightboxContent"></div>
-</div>
-
-<footer>© 2025 SV Realty Solutions Pvt. Ltd.</footer>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-body" id="lightboxBody">
+      <span class="close-btn" id="lbClose">&times;</span>
+      <span class="nav-btn prev-btn" id="lbPrev">&#10094;</span>
+      <span class="nav-btn next-btn" id="lbNext">&#10095;</span>
+      <div id="lightboxContent"></div>
+    </div>
+  </div>
 
 <script>
-  const gallery = document.getElementById("gallery");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxContent = document.getElementById("lightboxContent");
-  const closeBtn = document.getElementById("closeBtn");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+/* ============================
+   Media list (exact filenames)
+   - images are expected in assets/gallery/
+   - videos are expected in assets/videos/ (mp4)
+   ============================ */
+const mediaFiles = [
+  "khatu-shyam.jpg",
+  "plot1.jpg",
+  "roadmap.jpg",
+  "greenvalley.jpg",
+  "lansdowne_map.jpg",
+  "lansdowne1.jpg",
 
-  const mediaFiles = [
-    "khatu-shyam.jpg","plot1.jpg","roadmap.jpg","greenvalley.jpg","lansdowne_map.jpg","lansdowne1.jpg",
-    "SVREALTY-Owner-Interview.mp4","SVREALTY-General-Manager-Interview.mp4","Shri-Jee-Van-Introduction.mp4",
-    "Shri-Jee-Van-Drone-Shot.mp4","shri-ji-van-walkthrough.mp4","shri-ji-van-site.mp4",
-    "shri-ji-van-site-inspection.mp4","green-valley-tour.mp4","greenvalley-video.mp4","lansdowne-villa.mp4,"
-  ];
+  "Lansdowne-Road.mp4",
+  "Lansdowne-Road1.mp4",
+  "Lansdowne-villa.mp4",
+  "SVREALTY-General-Manager-Interview.mp4",
+  "SVREALTY-Owner-Interview.mp4",
+  "Shri-Jee-Van-Drone-Shot.mp4",
+  "Shri-Jee-Van-Introduction.mp4",
+  "green-valley-tour.mp4",
+  "greenvalley-video.mp4",
+  "shri-ji-van-site-inspection.mp4",
+  "shri-ji-van-site.mp4",
+  "shri-ji-van-walkthrough.mp4"
+];
 
-  let currentIndex = 0;
+/* Helper */
+const isVideoFile = name => /\.(mp4|webm|ogg)$/i.test(name);
+const galleryEl = document.getElementById('gallery');
 
-  mediaFiles.forEach((file,index)=>{
-    const item = document.createElement("div");
-    item.classList.add("gallery-item");
-    const isVideo = file.endsWith(".mp4");
-    const src = isVideo ? "assets/videos/"+file : "assets/gallery/"+file;
-    const title = file.split(".")[0].replace(/[-_]/g," ").replace(/\b\w/g,c=>c.toUpperCase());
-
-    if(isVideo){
-      const video = document.createElement("video");
-      video.src = src; video.controls = true;
-      item.appendChild(video);
-    } else {
-      const img = document.createElement("img");
-      img.src = src; img.alt = title;
-      item.appendChild(img);
+/* IntersectionObserver setup for lazy loading */
+const ioOptions = { root: null, rootMargin: '200px', threshold: 0.01 };
+const onIntersect = (entries, obs) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const type = el.dataset.type;
+      if(type === 'image') {
+        const img = el.querySelector('img[data-src]');
+        if(img && !img.src){ img.src = img.dataset.src; img.removeAttribute('data-src'); }
+      } else if(type === 'video') {
+        const video = el.querySelector('video[data-src]');
+        if(video && !video.src){
+          // add source element for MP4 (Option A: H.264 mp4)
+          const src = video.dataset.src;
+          const source = document.createElement('source');
+          source.src = src;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          video.load();
+        }
+      }
+      // remove skeleton after media loaded (handled by load events)
+      obs.unobserve(el);
     }
-
-    const span = document.createElement("span");
-    span.textContent = title;
-    item.appendChild(span);
-
-    // 🔹 Click opens lightbox
-    item.addEventListener("click",()=>{openLightbox(index);});
-
-    gallery.appendChild(item);
   });
+};
+const io = new IntersectionObserver(onIntersect, ioOptions);
 
-  // Magnify cursor effect
-  const items = document.querySelectorAll('.gallery-item');
-  items.forEach(item => {
-    item.addEventListener('mousemove', e => {
-      const media = item.querySelector('img, video');
-      const rect = item.getBoundingClientRect();
-      const x = ((e.clientX - rect.left)/rect.width)*100;
-      const y = ((e.clientY - rect.top)/rect.height)*100;
-      media.style.transformOrigin = `${x}% ${y}%`;
-    });
-    item.addEventListener('mouseleave', e => {
-      const media = item.querySelector('img, video');
-      media.style.transformOrigin = `center center`;
-    });
-  });
+/* Create a gallery card with skeleton shimmer */
+function createCard(filename, index){
+  const type = isVideoFile(filename)? 'video':'image';
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.type = type;
+  card.dataset.index = index;
 
-  function openLightbox(index){
-    currentIndex = index;
-    showLightbox();
-    lightbox.style.display="flex";
+  // skeleton placeholder
+  const skeleton = document.createElement('div');
+  skeleton.className = 'skeleton';
+  skeleton.style.minHeight = '160px';
+  card.appendChild(skeleton);
+
+  // accessible label
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = filename.replace(/\.[^/.]+$/, '').replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+
+  // actual media wrapper (hidden until loaded)
+  const mediaWrap = document.createElement('div');
+  mediaWrap.style.width = '100%';
+  mediaWrap.style.height = '100%';
+  mediaWrap.style.display = 'none';
+
+  if(type === 'image'){
+    const img = document.createElement('img');
+    img.alt = label.textContent;
+    img.loading = 'lazy';                       // native lazy load as extra
+    img.dataset.src = `assets/gallery/${encodeURIComponent(filename)}`;
+    img.addEventListener('load', ()=> {
+      skeleton.remove();
+      mediaWrap.style.display = '';
+    });
+    img.addEventListener('error', ()=> {
+      skeleton.remove();
+      mediaWrap.style.display = '';
+      mediaWrap.innerHTML = '<div style="padding:20px;color:#777;text-align:center">Image failed to load</div>';
+      console.warn('Image failed to load:','assets/gallery/'+filename);
+    });
+    mediaWrap.appendChild(img);
+    card.appendChild(mediaWrap);
+    card.appendChild(label);
+
+    // Observe for lazy load
+    io.observe(card);
+
+  } else {
+    // video: we don't add source directly to avoid heavy immediate load
+    const video = document.createElement('video');
+    video.controls = true;
+    video.preload = 'none';          // do not preload
+    video.playsInline = true;
+    video.muted = true;              // autoplay-safe if used in lightbox
+    video.setAttribute('aria-label', label.textContent);
+    video.dataset.src = `assets/videos/${encodeURIComponent(filename)}`; // encoded path in data-src
+
+    // add poster fallback if a matching image exists (e.g., same-name.jpg)
+    const possiblePoster = `assets/gallery/${encodeURIComponent(filename.replace(/\.[^/.]+$/,''))}.jpg`;
+    video.poster = possiblePoster; // browser will request poster if exists; fine if 404
+
+    video.addEventListener('loadeddata', () => {
+      skeleton.remove();
+      mediaWrap.style.display = '';
+    });
+    video.addEventListener('error', (e) => {
+      skeleton.remove();
+      mediaWrap.style.display = '';
+      mediaWrap.innerHTML = '<div style="padding:20px;color:#777;text-align:center">Video failed to load</div>';
+      console.error('Video failed to load:', filename, e);
+    });
+
+    mediaWrap.appendChild(video);
+    card.appendChild(mediaWrap);
+    card.appendChild(label);
+
+    // Observe for lazy load (will append <source> when in view)
+    io.observe(card);
   }
 
-  function closeLightbox(){
-    lightbox.style.display="none";
-    lightboxContent.innerHTML="";
-  }
+  // click opens lightbox (use index to navigate)
+  card.addEventListener('click', ()=> openLightbox(parseInt(card.dataset.index,10)) );
+  return card;
+}
 
-  function showLightbox(){
-    lightboxContent.innerHTML="";
-    const file = mediaFiles[currentIndex];
-    const isVideo = file.endsWith(".mp4");
-    const src = isVideo ? "assets/videos/"+file : "assets/gallery/"+file;
-    if(isVideo){
-      const video = document.createElement("video");
-      video.src = src; video.controls = true; video.autoplay = true;
-      lightboxContent.appendChild(video);
-    } else {
-      const img = document.createElement("img");
-      img.src = src;
-      lightboxContent.appendChild(img);
+/* Render gallery */
+function renderGallery(filter='all'){
+  galleryEl.innerHTML = '';
+  mediaFiles.forEach((file, idx) => {
+    const type = isVideoFile(file) ? 'videos' : 'images';
+    if(filter === 'all' || filter === type) {
+      galleryEl.appendChild(createCard(file, idx));
     }
+  });
+}
+
+/* Filters UI */
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    renderGallery(f === 'images' ? 'images' : f === 'videos' ? 'videos' : 'all');
+  });
+});
+
+/* Lightbox controls */
+const lightbox = document.getElementById('lightbox');
+const lightboxContent = document.getElementById('lightboxContent');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+let currentIndex = 0;
+
+function openLightbox(idx){
+  currentIndex = idx;
+  showLightbox();
+  lightbox.classList.add('show');
+  lightbox.setAttribute('aria-hidden','false');
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('show');
+  lightbox.setAttribute('aria-hidden','true');
+  lightboxContent.innerHTML = '';
+}
+
+function showLightbox(){
+  lightboxContent.innerHTML = '';
+  const file = mediaFiles[currentIndex];
+  if(isVideoFile(file)){
+    // create video element with source (autoplay muted for browsers)
+    const video = document.createElement('video');
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true;       // allows autoplay
+    video.playsInline = true;
+    video.style.maxHeight = '85vh';
+    // add source (Option A: mp4 H.264)
+    const source = document.createElement('source');
+    source.src = `assets/videos/${encodeURIComponent(file)}`;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+
+    // poster fallback (if exists)
+    const poster = `assets/gallery/${encodeURIComponent(file.replace(/\.[^/.]+$/,''))}.jpg`;
+    video.poster = poster;
+
+    video.addEventListener('error', ()=> {
+      lightboxContent.innerHTML = '<div style="color:#fff;padding:20px;text-align:center">Video failed to load.</div>';
+      console.error('Lightbox video error:', file);
+    });
+
+    lightboxContent.appendChild(video);
+  } else {
+    const img = document.createElement('img');
+    img.src = `assets/gallery/${encodeURIComponent(file)}`;
+    img.alt = file;
+    img.style.maxHeight = '85vh';
+    img.addEventListener('error', ()=> {
+      lightboxContent.innerHTML = '<div style="color:#fff;padding:20px;text-align:center">Image failed to load.</div>';
+      console.error('Lightbox image error:', file);
+    });
+    lightboxContent.appendChild(img);
   }
+}
 
-  closeBtn.addEventListener("click", closeLightbox);
-  nextBtn.addEventListener("click", ()=>{currentIndex=(currentIndex+1)%mediaFiles.length; showLightbox();});
-  prevBtn.addEventListener("click", ()=>{currentIndex=(currentIndex-1+mediaFiles.length)%mediaFiles.length; showLightbox();});
+/* Lightbox events */
+lbClose.addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', ()=> {
+  currentIndex = (currentIndex - 1 + mediaFiles.length) % mediaFiles.length;
+  showLightbox();
+});
+lbNext.addEventListener('click', ()=> {
+  currentIndex = (currentIndex + 1) % mediaFiles.length;
+  showLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + mediaFiles.length) % mediaFiles.length; showLightbox(); }
+  if(e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % mediaFiles.length; showLightbox(); }
+});
 
-  // Close on ESC
-  document.addEventListener("keydown",(e)=>{if(e.key==="Escape") closeLightbox();});
+/* Initial render */
+renderGallery('all');
+
+/* NOTES for Option A (compression):
+   - Keep MP4s encoded with H.264 (very browser-friendly).
+   - If you're compressing offline, export at 720p or 1080p with CRF ~23 (x264) for balance of size+quality.
+   - The page uses lazy-loading and avoids preloading videos so bandwidth is saved.
+*/
+
+/* Debug helper: show 404s in console for missing poster/image/video quickly */
+window.addEventListener('error', (ev) => {
+  const target = ev.target || ev.srcElement;
+  if(target && (target.tagName === 'IMG' || target.tagName === 'VIDEO' || target.tagName === 'SOURCE')){
+    console.warn('Resource error:', target.src || target.currentSrc || target.dataset?.src);
+  }
+}, true);
 </script>
 </body>
 </html>
