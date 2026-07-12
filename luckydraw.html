@@ -1,129 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucky Draw | SV Realty Solutions</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucky Draw • Coming Soon | SV Realty Solutions</title>
 
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 
   <style>
-    body {
-      background: linear-gradient(135deg, #eef2f3, #ffffff);
-      font-family: "Poppins", sans-serif;
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      text-align:center;
+    }
+
+    .coming-card{
+      background:#ffffff10;
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:20px;
+      padding:50px 35px;
+      width:90%;
+      max-width:550px;
+      box-shadow:0 20px 50px rgba(0,0,0,.3);
+    }
+
+    .icon{
+      font-size:70px;
+      margin-bottom:20px;
+    }
+
+    h1{
+      margin:10px 0;
+      font-size:38px;
+    }
+
+    h3{
+      color:#facc15;
+      margin-bottom:15px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    p{
+      color:#d1d5db;
+      line-height:1.7;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 28px;
+      background:#facc15;
+      color:#111827;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      background:#fde047;
+      transform:translateY(-2px);
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body>
 
-  <!-- NAVBAR -->
-  <nav class="bg-blue-600 shadow-lg text-white p-4 flex justify-between items-center">
-    <span class="text-xl font-bold">SV REALTY SOLUTIONS</span>
-    <a href="index.html" class="hover:text-yellow-300 font-semibold">Home</a>
-  </nav>
+<div class="coming-card">
 
-  <!-- HEADER -->
-  <header class="text-center py-10 bg-blue-50 border-b border-gray-200">
-    <h1 class="text-4xl font-bold text-blue-700 mb-2">
-      🎉 Lucky Draw – New Round 🎉
-    </h1>
-    <p class="text-gray-600">
-      Tourism Development Plan Khatu (Sikar, Rajasthan) — Project <strong>SHRI JI VAN</strong>
-    </p>
-  </header>
+  <div class="icon">🎉</div>
 
-  <!-- TABLE SECTION -->
-  <main class="flex-grow container mx-auto px-6 py-14">
+  <h3>Lucky Draw</h3>
 
-    <div class="bg-white shadow-2xl rounded-3xl p-8 border border-gray-200 overflow-x-auto">
+  <h1>Coming Soon!</h1>
 
-      <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">
-        Lucky Draw Entries
-      </h2>
+  <p>
+    We're preparing an exciting Lucky Draw experience for all
+    <strong>SV Realty Solutions</strong> customers.
+    Stay tuned for amazing prizes and exclusive rewards.
+  </p>
 
-      <table class="min-w-full border border-gray-300 text-sm">
-        <thead class="bg-blue-600 text-white">
-          <tr>
-            <th class="px-4 py-3 border">S. No</th>
-            <th class="px-4 py-3 border">Participant Name</th>
-            <th class="px-4 py-3 border">Aadhar Card Number</th>
-            <th class="px-4 py-3 border">Plot No.</th>
-          </tr>
-        </thead>
+  <a href="index.html" class="btn">← Back to Home</a>
 
-        <tbody class="text-gray-800">
-
-          <tr class="bg-blue-50">
-            <td class="px-4 py-3 border text-center">1</td>
-            <td class="px-4 py-3 border">Kishan Kumar</td>
-             <td class="px-4 py-3 border text-center font-semibold">8975****6545</td>
-            <td class="px-4 py-3 border text-center font-semibold">5</td>
-          </tr>
-
-          <tr>
-            <td class="px-4 py-3 border text-center">2</td>
-            <td class="px-4 py-3 border">Vinod Kumar</td>
-             <td class="px-4 py-3 border text-center font-semibold">7569****9872</td>
-            <td class="px-4 py-3 border text-center font-semibold">2</td>
-          </tr>
-
-          <tr class="bg-blue-50">
-            <td class="px-4 py-3 border text-center">3</td>
-            <td class="px-4 py-3 border">Kanika Soni</td>
-             <td class="px-4 py-3 border text-center font-semibold">4586****5564</td>
-            <td class="px-4 py-3 border text-center font-semibold">21</td>
-          </tr>
-
-          <tr>
-            <td class="px-4 py-3 border text-center">4</td>
-            <td class="px-4 py-3 border">Nitin Singh Tomar</td>
-             <td class="px-4 py-3 border text-center font-semibold">6441****4257</td>
-            <td class="px-4 py-3 border text-center font-semibold">19</td>
-          </tr>
-
-          <tr class="bg-blue-50">
-            <td class="px-4 py-3 border text-center">5</td>
-            <td class="px-4 py-3 border">Ankit</td>
-             <td class="px-4 py-3 border text-center font-semibold">6524****7758</td>
-            <td class="px-4 py-3 border text-center font-semibold">2</td>
-          </tr>
-
-          <tr>
-            <td class="px-4 py-3 border text-center">6</td>
-            <td class="px-4 py-3 border">Rishabh Tanwar</td>
-            <td class="px-4 py-3 border text-center font-semibold">8866****4423</td>
-            <td class="px-4 py-3 border text-center font-semibold">11</td>
-          </tr>
-
-          <tr class="bg-blue-50">
-            <td class="px-4 py-3 border text-center">7</td>
-            <td class="px-4 py-3 border">Anita</td>
-             <td class="px-4 py-3 border text-center font-semibold">8632****3598</td>
-            <td class="px-4 py-3 border text-center font-semibold">25</td>
-          </tr>
-
-          <tr>
-            <td class="px-4 py-3 border text-center">8</td>
-            <td class="px-4 py-3 border">Chhelaram</td>
-             <td class="px-4 py-3 border text-center font-semibold">3652****9987</td>
-            <td class="px-4 py-3 border text-center font-semibold">17</td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-blue-600 text-white text-center py-4">
-    <p>© 2025 SV Realty Solutions | All Rights Reserved</p>
-  </footer>
+</div>
 
 </body>
 </html>
